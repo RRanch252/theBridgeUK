@@ -1240,3 +1240,212 @@ body {
         #ff00ff 75%, 
         #ff0066 100%);
 }
+
+/* ===================================
+   DESIGN CONSISTENCY FIXES
+   Add these to your complete-styles.css
+   =================================== */
+
+/* 1. CSS Variables for Consistency */
+:root {
+    /* Spacing System */
+    --spacing-xs: 8px;
+    --spacing-sm: 16px;
+    --spacing-md: 24px;
+    --spacing-lg: 40px;
+    --spacing-xl: 60px;
+    --spacing-xxl: 80px;
+    --spacing-xxxl: 100px;
+    
+    /* Typography Scale */
+    --font-size-hero: 280px;
+    --font-size-title: 72px;
+    --font-size-subtitle: 28px;
+    --font-size-section: 24px;
+    --font-size-body: 18px;
+    --font-size-small: 14px;
+    --font-size-xs: 12px;
+    
+    /* Consistent Colors */
+    --color-primary: #ff0066;
+    --color-secondary: #00ffff;
+    --color-accent: #00ff66;
+    --color-text: #fff;
+    --color-text-muted: #999;
+    --color-text-light: #ccc;
+    
+    /* Card Styling */
+    --card-bg: rgba(255,255,255,0.05);
+    --card-border: rgba(255,255,255,0.1);
+    --card-hover-bg: rgba(255,255,255,0.08);
+    
+    /* Transitions */
+    --transition-standard: all 0.3s ease;
+}
+
+/* 2. Standardize ALL Slide Padding */
+.slide {
+    padding: var(--spacing-xxl) var(--spacing-xxxl) !important;
+}
+
+/* Exception for hero slide which is centered */
+.hero-slide {
+    padding: 0 !important;
+}
+
+/* Exception for roadmap slide - give it more space */
+.roadmap-slide {
+    padding: var(--spacing-lg) !important;
+}
+
+/* 3. Consistent Title Styling */
+.vision-title,
+.team-title,
+.partnerships-title,
+.slide-title {
+    font-size: var(--font-size-title) !important;
+    font-weight: 800 !important;
+    line-height: 1.1 !important;
+    letter-spacing: -2px !important;
+    /* Remove all individual gradients */
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    -webkit-text-fill-color: unset !important;
+    color: var(--color-text) !important;
+}
+
+/* Add gradient ONLY to specific titles if desired */
+.team-title {
+    background: linear-gradient(135deg, #fff 0%, #00ffff 50%, #fff 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+}
+
+/* 4. Consistent Subtitle Styling */
+.vision-subtitle,
+.team-subtitle,
+.partnerships-subtitle,
+.slide-subtitle,
+.roadmap-subtitle {
+    font-size: var(--font-size-subtitle) !important;
+    color: var(--color-text-muted) !important;
+    font-weight: 300 !important;
+}
+
+/* 5. Fix ALL Card Consistency */
+.team-member-card,
+.partner-card,
+.proof-card,
+.thesis-card,
+.metric-block {
+    background: var(--card-bg) !important;
+    border: 1px solid var(--card-border) !important;
+    transition: var(--transition-standard) !important;
+}
+
+.team-member-card:hover,
+.partner-card:hover,
+.proof-card:hover,
+.thesis-card:hover,
+.metric-block:hover {
+    background: var(--card-hover-bg) !important;
+    transform: translateY(-3px) !important;
+    border-color: rgba(0,255,255,0.2) !important;
+}
+
+/* 6. Fix Slide Numbers */
+.slide-number {
+    color: #888 !important;
+    font-size: 16px !important;
+    font-weight: 500 !important;
+}
+
+/* 7. Remove Emojis - Replace with Unicode or SVG icons */
+.card-icon {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 32px !important;
+}
+
+/* Replace emoji content */
+.card-icon:has-text("📈") { content: "↗"; }
+.card-icon:has-text("🎯") { content: "◎"; }
+.card-icon:has-text("⭐") { content: "★"; }
+.card-icon:has-text("💰") { content: "$"; }
+
+/* 8. Professional Team Card Styling */
+.image-placeholder {
+    background: linear-gradient(135deg, #333, #555) !important;
+    font-size: 28px !important;
+    font-weight: 600 !important;
+    color: #fff !important;
+    opacity: 0.8;
+}
+
+/* 9. Fix Roadmap Spacing */
+.roadmap-container {
+    height: 920px !important; /* Reduced from 1060px */
+}
+
+.roadmap-header {
+    padding: 20px 40px !important; /* Reduced from 25px 40px */
+}
+
+.roadmap-title {
+    font-size: 48px !important; /* Increased from 42px but still smaller than others */
+}
+
+.roadmap-body {
+    padding: 20px 40px !important; /* Increased from 15px 30px */
+}
+
+.roadmap-category {
+    margin-bottom: 25px !important; /* Increased from 20px */
+}
+
+/* 10. Consistent Section Headers */
+.category-title,
+.chart-title {
+    font-size: var(--font-size-section) !important;
+    font-weight: 700 !important;
+    color: var(--color-secondary) !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+}
+
+/* 11. Fix Progress Bar */
+.progress-bar {
+    position: relative;
+}
+
+.progress-bar::after {
+    content: "31% Committed";
+    position: absolute;
+    top: -25px;
+    left: 0;
+    font-size: 12px;
+    color: var(--color-text-muted);
+    font-weight: 600;
+}
+
+/* 12. Limit Color Palette in Revenue Chart */
+.segment-musical { background: linear-gradient(135deg, var(--color-primary), #ff3399) !important; }
+.segment-songs { background: linear-gradient(135deg, var(--color-secondary), #0099ff) !important; }
+.segment-events { background: linear-gradient(135deg, var(--color-accent), #00ffaa) !important; }
+.segment-merch { background: rgba(255,255,255,0.2) !important; }
+.segment-podcast { background: rgba(255,255,255,0.3) !important; }
+
+/* 13. Fix Financial Slide Consistency */
+.chart-wrapper,
+.revenue-mix-chart {
+    background: var(--card-bg) !important;
+    padding: var(--spacing-lg) !important;
+}
+
+/* 14. Hero Slide Breathing Room */
+.hero-metric {
+    margin-bottom: var(--spacing-xl) !important;
+}
+
+.proof-grid {
+    margin-top: var(--spacing-xxxl) !important;
+}
