@@ -1,9 +1,9 @@
-/* ===================================
-   DESIGN CONSISTENCY FIXES
-   Add these to your complete-styles.css
-   =================================== */
+/* complete-styles.css - All CSS from The Bridge Deck with Design Consistency Fixes */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
 
-/* 1. CSS Variables for Consistency */
+/* ===================================
+   CSS VARIABLES FOR CONSISTENCY
+   =================================== */
 :root {
     /* Spacing System */
     --spacing-xs: 8px;
@@ -40,174 +40,498 @@
     --transition-standard: all 0.3s ease;
 }
 
-/* 2. Standardize ALL Slide Padding */
-.slide {
-    padding: var(--spacing-xxl) var(--spacing-xxxl) !important;
+/* Base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* Exception for hero slide which is centered */
+body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: #000;
+    color: #fff;
+    overflow-x: hidden;
+}
+
+.slide {
+    width: 1920px;
+    height: 1080px;
+    background: #000;
+    position: relative;
+    margin: 0 auto 50px;
+    overflow: hidden;
+    /* Standardized padding */
+    padding: var(--spacing-xxl) var(--spacing-xxxl);
+}
+
+/* Slide 1: The Hook */
 .hero-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    /* Exception: no padding for centered content */
     padding: 0 !important;
 }
 
-/* Exception for roadmap slide - give it more space */
-.roadmap-slide {
-    padding: var(--spacing-lg) !important;
-}
-
-/* 3. Consistent Title Styling */
-.vision-title,
-.team-title,
-.partnerships-title,
-.slide-title {
-    font-size: var(--font-size-title) !important;
-    font-weight: 800 !important;
-    line-height: 1.1 !important;
-    letter-spacing: -2px !important;
-    /* Remove all individual gradients */
-    background: none !important;
-    -webkit-background-clip: unset !important;
-    -webkit-text-fill-color: unset !important;
-    color: var(--color-text) !important;
-}
-
-/* Add gradient ONLY to specific titles if desired */
-.team-title {
-    background: linear-gradient(135deg, #fff 0%, #00ffff 50%, #fff 100%) !important;
-    -webkit-background-clip: text !important;
-    -webkit-text-fill-color: transparent !important;
-}
-
-/* 4. Consistent Subtitle Styling */
-.vision-subtitle,
-.team-subtitle,
-.partnerships-subtitle,
-.slide-subtitle,
-.roadmap-subtitle {
-    font-size: var(--font-size-subtitle) !important;
-    color: var(--color-text-muted) !important;
-    font-weight: 300 !important;
-}
-
-/* 5. Fix ALL Card Consistency */
-.team-member-card,
-.partner-card,
-.proof-card,
-.thesis-card,
-.metric-block {
-    background: var(--card-bg) !important;
-    border: 1px solid var(--card-border) !important;
-    transition: var(--transition-standard) !important;
-}
-
-.team-member-card:hover,
-.partner-card:hover,
-.proof-card:hover,
-.thesis-card:hover,
-.metric-block:hover {
-    background: var(--card-hover-bg) !important;
-    transform: translateY(-3px) !important;
-    border-color: rgba(0,255,255,0.2) !important;
-}
-
-/* 6. Fix Slide Numbers */
-.slide-number {
-    color: #888 !important;
-    font-size: 16px !important;
-    font-weight: 500 !important;
-}
-
-/* 7. Remove Emojis - Replace with Unicode or SVG icons */
-.card-icon {
-    font-family: 'Inter', sans-serif !important;
-    font-size: 32px !important;
-}
-
-/* Replace emoji content */
-.card-icon:has-text("📈") { content: "↗"; }
-.card-icon:has-text("🎯") { content: "◎"; }
-.card-icon:has-text("⭐") { content: "★"; }
-.card-icon:has-text("💰") { content: "$"; }
-
-/* 8. Professional Team Card Styling */
-.image-placeholder {
-    background: linear-gradient(135deg, #333, #555) !important;
-    font-size: 28px !important;
-    font-weight: 600 !important;
-    color: #fff !important;
-    opacity: 0.8;
-}
-
-/* 9. Fix Roadmap Spacing */
-.roadmap-container {
-    height: 920px !important; /* Reduced from 1060px */
-}
-
-.roadmap-header {
-    padding: 20px 40px !important; /* Reduced from 25px 40px */
-}
-
-.roadmap-title {
-    font-size: 48px !important; /* Increased from 42px but still smaller than others */
-}
-
-.roadmap-body {
-    padding: 20px 40px !important; /* Increased from 15px 30px */
-}
-
-.roadmap-category {
-    margin-bottom: 25px !important; /* Increased from 20px */
-}
-
-/* 10. Consistent Section Headers */
-.category-title,
-.chart-title {
-    font-size: var(--font-size-section) !important;
-    font-weight: 700 !important;
-    color: var(--color-secondary) !important;
-    text-transform: uppercase !important;
-    letter-spacing: 1px !important;
-}
-
-/* 11. Fix Progress Bar */
-.progress-bar {
+.hero-content {
+    text-align: center;
+    z-index: 10;
     position: relative;
 }
 
-.progress-bar::after {
-    content: "31% Committed";
-    position: absolute;
-    top: -25px;
-    left: 0;
-    font-size: 12px;
-    color: var(--color-text-muted);
-    font-weight: 600;
-}
-
-/* 12. Limit Color Palette in Revenue Chart */
-.segment-musical { background: linear-gradient(135deg, var(--color-primary), #ff3399) !important; }
-.segment-songs { background: linear-gradient(135deg, var(--color-secondary), #0099ff) !important; }
-.segment-events { background: linear-gradient(135deg, var(--color-accent), #00ffaa) !important; }
-.segment-merch { background: rgba(255,255,255,0.2) !important; }
-.segment-podcast { background: rgba(255,255,255,0.3) !important; }
-
-/* 13. Fix Financial Slide Consistency */
-.chart-wrapper,
-.revenue-mix-chart {
-    background: var(--card-bg) !important;
-    padding: var(--spacing-lg) !important;
-}
-
-/* 14. Hero Slide Breathing Room */
 .hero-metric {
-    margin-bottom: var(--spacing-xl) !important;
+    font-size: var(--font-size-hero);
+    font-weight: 800;
+    line-height: 1.2;
+    background: linear-gradient(135deg, #ff0066 0%, #00ffff 50%, #ffff00 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: var(--spacing-xl);
+    letter-spacing: -5px;
+    padding: 0 40px;
+    margin-top: -60px;
+}
+
+.hero-context {
+    font-size: 48px;
+    font-weight: 300;
+    color: #fff;
+    margin-bottom: 60px;
+    letter-spacing: -1px;
 }
 
 .proof-grid {
-    margin-top: var(--spacing-xxxl) !important;
+    display: flex;
+    gap: 60px;
+    justify-content: center;
+    align-items: center;
+    margin-top: var(--spacing-xxxl);
 }
 
-/* complete-styles.css - All CSS from The Bridge Deck */
+.proof-stat {
+    text-align: center;
+}
+
+.proof-number {
+    font-size: 72px;
+    font-weight: 800;
+    color: var(--color-secondary);
+    margin-bottom: 10px;
+}
+
+.proof-label {
+    font-size: 20px;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.gradient-orb {
+    position: absolute;
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(255,0,102,0.3) 0%, rgba(0,255,255,0.2) 50%, transparent 70%);
+    filter: blur(100px);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: pulse 8s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-50%, -50%) scale(1.1); }
+}
+
+/* Slide 2: The Vision */
+.vision-slide {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.vision-header {
+    margin-bottom: var(--spacing-xl);
+}
+
+/* Consistent title styling */
+.vision-title {
+    font-size: var(--font-size-title);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    letter-spacing: -2px;
+    color: var(--color-text);
+}
+
+.vision-subtitle {
+    font-size: var(--font-size-subtitle);
+    font-weight: 300;
+    color: var(--color-text-muted);
+}
+
+.timeline-visual {
+    position: relative;
+    height: 400px;
+    margin: 60px 0;
+}
+
+.timeline-line {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #00ff66 0%, #00ffff 33%, #ff0066 66%, #ffff00 100%);
+    transform: translateY(-50%);
+}
+
+.timeline-point {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    cursor: pointer;
+    transition: var(--transition-standard);
+}
+
+.timeline-point:hover {
+    transform: translate(-50%, -60%);
+}
+
+.point-circle {
+    width: 120px;
+    height: 120px;
+    background: #000;
+    border: 4px solid #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    font-weight: 800;
+    margin: 0 auto 20px;
+    position: relative;
+}
+
+.point-label {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    white-space: nowrap;
+}
+
+.point-value {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--color-secondary);
+}
+
+.timeline-point:nth-child(2) { left: 10%; }
+.timeline-point:nth-child(3) { left: 35%; }
+.timeline-point:nth-child(4) { left: 60%; }
+.timeline-point:nth-child(5) { left: 85%; }
+
+.bottom-metrics {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+/* Consistent card styling */
+.metric-block {
+    flex: 1;
+    padding: 40px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 24px;
+    margin-right: 30px;
+    backdrop-filter: blur(10px);
+    transition: var(--transition-standard);
+}
+
+.metric-block:hover {
+    background: var(--card-hover-bg);
+    transform: translateY(-3px);
+    border-color: rgba(0,255,255,0.2);
+}
+
+.metric-block:last-child {
+    margin-right: 0;
+}
+
+.metric-title {
+    font-size: 18px;
+    color: var(--color-text-muted);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.metric-value {
+    font-size: 48px;
+    font-weight: 800;
+    color: var(--color-text);
+    margin-bottom: 10px;
+}
+
+.metric-detail {
+    font-size: 16px;
+    color: var(--color-text-light);
+    line-height: 1.5;
+}
+
+/* Team Slide Styles */
+.team-slide {
+    display: flex;
+    flex-direction: column;
+}
+
+.team-header {
+    margin-bottom: var(--spacing-xl);
+}
+
+.team-title {
+    font-size: var(--font-size-title);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    letter-spacing: -2px;
+    /* Special gradient for team slide */
+    background: linear-gradient(135deg, #fff 0%, #00ffff 50%, #fff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.team-subtitle {
+    font-size: var(--font-size-subtitle);
+    color: var(--color-text-muted);
+    font-weight: 300;
+}
+
+.team-grid-main {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    flex: 1;
+}
+
+.team-member-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 24px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    transition: var(--transition-standard);
+}
+
+.team-member-card.featured {
+    background: rgba(255,0,102,0.1);
+    border-color: rgba(255,0,102,0.3);
+}
+
+.team-member-card:hover {
+    background: var(--card-hover-bg);
+    transform: translateY(-3px);
+    border-color: rgba(0,255,255,0.2);
+}
+
+.member-image {
+    margin-bottom: 20px;
+}
+
+.image-placeholder {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, #333, #555);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: 600;
+    color: #fff;
+    opacity: 0.8;
+}
+
+.member-name {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.member-role {
+    font-size: 18px;
+    color: var(--color-secondary);
+    margin-bottom: 15px;
+}
+
+.member-achievement {
+    font-size: 14px;
+    color: var(--color-text-muted);
+    line-height: 1.4;
+}
+
+/* Partnerships Slide Styles */
+.partnerships-slide {
+    display: flex;
+    flex-direction: column;
+}
+
+.partnerships-header {
+    margin-bottom: var(--spacing-xl);
+}
+
+.partnerships-title {
+    font-size: var(--font-size-title);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    letter-spacing: -2px;
+    color: var(--color-text);
+}
+
+.partnerships-subtitle {
+    font-size: var(--font-size-subtitle);
+    color: var(--color-text-muted);
+    font-weight: 300;
+}
+
+.partnerships-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    flex: 1;
+}
+
+.partnership-category {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.category-title {
+    font-size: var(--font-size-section);
+    font-weight: 700;
+    color: var(--color-secondary);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.partner-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 25px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    transition: var(--transition-standard);
+}
+
+.partner-card.major {
+    background: rgba(0,255,255,0.1);
+    border-color: rgba(0,255,255,0.3);
+}
+
+.partner-card:hover {
+    background: var(--card-hover-bg);
+    transform: translateY(-3px);
+    border-color: rgba(0,255,255,0.2);
+}
+
+.partner-logo {
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.partner-detail {
+    font-size: 14px;
+    color: var(--color-text-muted);
+}
+
+.government-support {
+    margin-top: 40px;
+    background: rgba(0,255,102,0.1);
+    border: 2px solid rgba(0,255,102,0.3);
+    border-radius: 24px;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.support-icon {
+    font-size: 60px;
+}
+
+.support-title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.support-detail {
+    font-size: 18px;
+    color: var(--color-text-light);
+}
+
+/* Financial Projections Slide */
+.financial-slide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.slide-header {
+    text-align: center;
+    margin-bottom: var(--spacing-xxl);
+}
+
+.slide-title {
+    font-size: var(--font-size-title);
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    letter-spacing: -2px;
+    color: var(--color-text);
+    padding: 0 20px;
+}
+
+.slide-subtitle {
+    font-size: var(--font-size-subtitle);
+    color: var(--color-text-muted);
+    font-weight: 300;
+}
+
+.charts-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    width: 100%;
+    flex: 1;
+    align-items: center;
+}
+
+/* Revenue Growth Chart (Left) */
+.chart-wrapper {
+    background: var(--card-bg);
+    border-radius: 32px;
+    padding: var(--spacing-lg);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.chart-he/* complete-styles.css - All CSS from The Bridge Deck */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
 
 * {
@@ -1449,4 +1773,3 @@ body {
         #ff00ff 75%, 
         #ff0066 100%);
 }
-
