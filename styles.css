@@ -1,4 +1,4 @@
-/* styles.css */
+/* Navigation and Container Styles */
 * {
     margin: 0;
     padding: 0;
@@ -23,20 +23,27 @@ body {
     position: relative;
 }
 
+/* Override slide styles for navigation system */
 .slide {
     width: 1920px;
     height: 1080px;
     background: #000;
     position: absolute;
     overflow: hidden;
-    transform: scale(var(--scale, 0.5));
     transform-origin: center;
     opacity: 0;
     transition: opacity 0.5s ease;
+    display: none; /* Hidden by default */
+    padding: 40px; /* Reset padding */
+    margin: 0; /* Reset margin */
+    min-height: auto; /* Reset min-height */
 }
 
 .slide.active {
     opacity: 1;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Navigation */
@@ -73,6 +80,11 @@ body {
     transform: scale(1.1);
 }
 
+.nav-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
 #slide-counter {
     font-size: 16px;
     color: #999;
@@ -103,118 +115,52 @@ body {
 /* Responsive scaling */
 @media (max-width: 1920px) {
     .slide {
-        transform: scale(calc(100vw / 1920));
+        transform: scale(calc(min(100vw / 1920, 100vh / 1080)));
     }
 }
 
-/* Slide Styles - Core styles from the deck */
-.hero-slide {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-}
-
-.hero-content {
+/* Touch indicator */
+.swipe-hint {
+    position: fixed;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255,255,255,0.3);
+    font-size: 14px;
     text-align: center;
-    z-index: 10;
-    position: relative;
+    animation: fadeInOut 3s ease-in-out;
 }
 
-.hero-metric {
-    font-size: 280px;
-    font-weight: 800;
-    line-height: 1.2;
-    background: linear-gradient(135deg, #ff0066 0%, #00ffff 50%, #ffff00 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom: 20px;
-    letter-spacing: -5px;
-    padding: 0 40px;
-    margin-top: -60px;
+@keyframes fadeInOut {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
 }
 
-.proof-grid {
-    display: flex;
-    gap: 60px;
-    justify-content: center;
-    align-items: center;
-    margin-top: 120px;
-}
-
-.proof-stat {
-    text-align: center;
-}
-
-.proof-number {
-    font-size: 72px;
-    font-weight: 800;
-    color: #00ffff;
-    margin-bottom: 10px;
-}
-
-.proof-label {
-    font-size: 20px;
-    color: #999;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-.gradient-orb {
-    position: absolute;
-    width: 800px;
-    height: 800px;
-    background: radial-gradient(circle, rgba(255,0,102,0.3) 0%, rgba(0,255,255,0.2) 50%, transparent 70%);
-    filter: blur(100px);
+/* Loading state */
+.loading {
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    animation: pulse 8s ease-in-out infinite;
-}
-
-@keyframes pulse {
-    0%, 100% { transform: translate(-50%, -50%) scale(1); }
-    50% { transform: translate(-50%, -50%) scale(1.1); }
-}
-
-@keyframes float {
-    0%, 100% { transform: translateY(-50%) translateX(0); }
-    50% { transform: translateY(-50%) translateX(-50px); }
-}
-
-/* Universal elements */
-.slide-number {
-    position: absolute;
-    top: 60px;
-    right: 100px;
-    font-size: 16px;
     color: #666;
-    font-weight: 600;
+    font-size: 18px;
 }
 
-.brand-mark {
-    position: absolute;
-    bottom: 60px;
-    right: 100px;
-    font-size: 24px;
-    font-weight: 800;
-    letter-spacing: 4px;
-    opacity: 0.3;
+/* Keyboard shortcuts hint */
+.keyboard-hint {
+    position: fixed;
+    bottom: 10px;
+    right: 30px;
+    color: rgba(255,255,255,0.2);
+    font-size: 12px;
 }
 
-.decorative-lines {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 8px;
-    background: linear-gradient(90deg, 
-        #ff0066 0%, 
-        #00ffff 25%, 
-        #ffff00 50%, 
-        #ff00ff 75%, 
-        #ff0066 100%);
+/* Slide transition effects */
+.slide-transition-fade {
+    animation: fadeIn 0.5s ease;
 }
 
-/* Include all other slide-specific styles from the original deck here */
-/* This is a condensed version - you'll need to copy all the specific styles for each slide type */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
