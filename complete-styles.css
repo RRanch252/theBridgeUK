@@ -1,3 +1,11 @@
+/* Universal spacing units */
+--spacing-xs: 8px;
+--spacing-sm: 16px;
+--spacing-md: 24px;
+--spacing-lg: 40px;
+--spacing-xl: 60px;
+--spacing-xxl: 80px;
+
 /* complete-styles.css - All CSS from The Bridge Deck */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
 
