@@ -127,6 +127,11 @@ body {
     50% { transform: translate(-50%, -50%) scale(1.1); }
 }
 
+@keyframes float {
+    0%, 100% { transform: translateY(-50%) translateX(0); }
+    50% { transform: translateY(-50%) translateX(-50px); }
+}
+
 /* Slide 2: The Vision */
 .vision-slide {
     padding: 100px;
@@ -1025,10 +1030,12 @@ body {
     font-weight: 600;
 }
 
-/* Investment Opportunity Slide */
+/* Investment Opportunity Slide - FIXED */
 .opportunity-slide {
-    display: flex;
+    display: flex !important;
+    flex-direction: row !important;
     align-items: center;
+    justify-content: center;
     padding: 100px;
     gap: 120px;
     position: relative;
@@ -1227,11 +1234,6 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 0;
-}
-
-@keyframes float {
-    0%, 100% { transform: translateY(-50%) translateX(0); }
-    50% { transform: translateY(-50%) translateX(-50px); }
 }
 
 /* Universal elements */
