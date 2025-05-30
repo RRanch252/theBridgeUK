@@ -608,27 +608,22 @@ body {
     align-items: center;
     justify-content: center;
     padding: 20px;
-    min-height: 100vh; /* Ensure full height */
 }
 
 .roadmap-container {
     width: 100%;
     max-width: 1800px;
-    max-height: 90vh; /* Limit height to viewport */
     background: #000;
     border-radius: 24px;
     overflow: hidden;
     border: 2px solid rgba(255,255,255,0.1);
-    display: flex;
-    flex-direction: column;
 }
 
 .roadmap-header {
     background: linear-gradient(135deg, rgba(255,0,102,0.2) 0%, rgba(0,255,255,0.2) 100%);
-    padding: 25px 30px; /* Reduced padding */
+    padding: 30px;
     text-align: center;
     position: relative;
-    flex-shrink: 0;
 }
 
 .roadmap-header::before {
@@ -642,17 +637,17 @@ body {
 }
 
 .roadmap-title {
-    font-size: clamp(24px, 3vw, 36px); /* Smaller title */
+    font-size: clamp(28px, 3.5vw, 42px);
     font-weight: 800;
     letter-spacing: -2px;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     background: linear-gradient(135deg, #fff, #00ffff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
 .roadmap-subtitle {
-    font-size: 14px;
+    font-size: 16px;
     color: #ccc;
     font-weight: 300;
 }
@@ -662,21 +657,16 @@ body {
     grid-template-columns: repeat(7, 1fr);
     background: rgba(255,255,255,0.05);
     border-bottom: 1px solid rgba(255,255,255,0.1);
-    flex-shrink: 0;
 }
 
 .month {
-    padding: 12px 5px; /* Reduced padding */
+    padding: 15px 5px;
     text-align: center;
     border-right: 1px solid rgba(255,255,255,0.1);
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
-    font-size: 11px;
-}
-
-.month:last-child {
-    border-right: none;
+    font-size: 12px;
 }
 
 .month.current {
@@ -685,19 +675,17 @@ body {
 }
 
 .roadmap-body {
-    padding: 20px 25px; /* Reduced padding */
-    overflow-y: auto; /* Allow scrolling if needed */
-    flex: 1;
+    padding: 30px;
 }
 
 .roadmap-category {
-    margin-bottom: 25px; /* Reduced margin */
+    margin-bottom: 30px;
 }
 
 .category-title {
-    font-size: 16px; /* Smaller font */
+    font-size: 18px;
     font-weight: 700;
-    margin-bottom: 12px;
+    margin-bottom: 15px;
     color: #00ffff;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -705,48 +693,41 @@ body {
 
 .task-row {
     display: grid;
-    grid-template-columns: 180px 1fr; /* Slightly smaller name column */
+    grid-template-columns: 200px 1fr;
     align-items: center;
-    margin-bottom: 8px;
-    gap: 15px;
+    margin-bottom: 10px;
+    gap: 20px;
 }
 
 .task-name {
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 500;
     color: #ddd;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 .task-timeline {
     position: relative;
-    height: 24px; /* Smaller bars */
+    height: 28px;
     background: rgba(255,255,255,0.05);
-    border-radius: 12px;
+    border-radius: 14px;
     overflow: hidden;
 }
 
 .task-bar {
     position: absolute;
     height: 100%;
-    border-radius: 12px;
+    border-radius: 14px;
     display: flex;
     align-items: center;
-    padding: 0 12px;
-    font-size: 10px;
+    padding: 0 15px;
+    font-size: 11px;
     font-weight: 600;
     transition: all 0.3s ease;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 .task-bar:hover {
     transform: scaleY(1.1);
     filter: brightness(1.2);
-    z-index: 10;
 }
 
 .task-bar.completed { background: linear-gradient(135deg, #00ff66, #00ffaa); color: #000; }
@@ -764,50 +745,30 @@ body {
     border: 1px dotted rgba(255,255,255,0.3);
 }
 
-.milestone-marker {
-    position: absolute;
-    top: -20px;
-    transform: translateX(-50%);
-    font-size: 9px;
-    color: #00ffff;
-    font-weight: 600;
-    text-transform: uppercase;
-    white-space: nowrap;
-}
-
-.milestone-marker::after {
-    content: '▼';
-    display: block;
-    text-align: center;
-    margin-top: -3px;
-    font-size: 8px;
-}
-
 .roadmap-legend {
     display: flex;
-    gap: 15px;
+    gap: 20px;
     justify-content: center;
-    margin-top: 15px;
-    padding: 15px 20px;
+    margin-top: 20px;
+    padding-top: 20px;
     border-top: 1px solid rgba(255,255,255,0.1);
-    flex-shrink: 0;
     flex-wrap: wrap;
 }
 
 .roadmap-legend-item {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
 }
 
 .roadmap-legend-color {
-    width: 18px;
-    height: 10px;
-    border-radius: 5px;
+    width: 20px;
+    height: 12px;
+    border-radius: 6px;
 }
 
 .roadmap-legend-label {
-    font-size: 10px;
+    font-size: 11px;
     color: #999;
 }
 
