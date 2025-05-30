@@ -531,7 +531,266 @@ body {
     flex-direction: column;
 }
 
-.chart-he/* complete-styles.css - All CSS from The Bridge Deck */
+.chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
+    margin-top: -10px;
+}
+
+.chart-title {
+    font-size: var(--font-size-section);
+    font-weight: 700;
+    color: var(--color-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.chart-legend {
+    display: flex;
+    gap: 30px;
+    font-size: 14px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.legend-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.chart-area {
+    height: 400px;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 0 20px;
+    flex: 1;
+}
+
+.year-bar {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.bar-stack {
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.revenue-bar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    font-weight: 700;
+    font-size: 20px;
+    font-family: 'Inter', -apple-system, sans-serif;
+    border-radius: 8px 8px 0 0;
+    position: relative;
+    transition: var(--transition-standard);
+}
+
+.revenue-bar:hover {
+    transform: scaleY(1.05);
+    filter: brightness(1.2);
+}
+
+.year-label {
+    font-size: 18px;
+    font-weight: 600;
+    font-family: 'Inter', -apple-system, sans-serif;
+    color: var(--color-text-muted);
+}
+
+.profit-indicator {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: transparent;
+    border-top: 2px dashed rgba(0,255,102,0.5);
+    z-index: 10;
+}
+
+.profit-label {
+    position: absolute;
+    top: 48%;
+    right: -60px;
+    font-size: 12px;
+    color: var(--color-accent);
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+/* Revenue Mix Chart (Right) */
+.revenue-mix-chart {
+    background: var(--card-bg);
+    border-radius: 32px;
+    padding: var(--spacing-lg);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.revenue-years {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    flex: 1;
+}
+
+.year-column {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.mix-year-label {
+    font-size: 18px;
+    font-weight: 600;
+    font-family: 'Inter', -apple-system, sans-serif;
+    color: var(--color-text-muted);
+    margin-bottom: 20px;
+}
+
+.revenue-total {
+    font-size: 28px;
+    font-weight: 800;
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: linear-gradient(135deg, #00ff66, #00ffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 20px;
+}
+
+.revenue-breakdown {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    flex: 1;
+}
+
+.revenue-segment {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    font-weight: 600;
+    font-size: 13px;
+    font-family: 'Inter', -apple-system, sans-serif;
+    position: relative;
+    transition: var(--transition-standard);
+}
+
+.revenue-segment:hover {
+    filter: brightness(1.2);
+    z-index: 10;
+}
+
+/* Limited color palette */
+.segment-musical {
+    background: linear-gradient(135deg, var(--color-primary), #ff3399);
+}
+
+.segment-songs {
+    background: linear-gradient(135deg, var(--color-secondary), #0099ff);
+}
+
+.segment-events {
+    background: linear-gradient(135deg, var(--color-accent), #00ffaa);
+}
+
+.segment-merch {
+    background: rgba(255,255,255,0.2);
+}
+
+.segment-podcast {
+    background: rgba(255,255,255,0.3);
+}
+
+.revenue-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 30px;
+    justify-content: center;
+    font-size: 12px;
+}
+
+.mix-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.mix-legend-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+}
+
+/* Launch Roadmap Slide */
+.roadmap-slide {
+    /* Exception: less padding for roadmap */
+    padding: var(--spacing-lg) !important;
+}
+
+.roadmap-container {
+    max-width: 1900px;
+    height: 920px;
+    margin: 0 auto;
+    background: #000;
+    border-radius: 24px;
+    overflow: hidden;
+    border: 2px solid rgba(255,255,255,0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.roadmap-header {
+    background: linear-gradient(135deg, rgba(255,0,102,0.2) 0%, rgba(0,255,255,0.2) 100%);
+    padding: 20px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.roadmap-header::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #ff0066, #00ffff, #ffff00, #ff00ff);
+}
+
+.roadmap-title {
+    font-size: 48px;
+    font-weight: 800;
+    letter-spacing: -2px;
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, #fff, #00ffff);
+    -webkit-background-clip: text;/* complete-styles.css - All CSS from The Bridge Deck */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
 
 * {
