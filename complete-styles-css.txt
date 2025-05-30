@@ -1,0 +1,56 @@
+/* complete-styles.css - Full CSS from The Bridge Deck */
+/* Copy ALL the CSS from your complete deck here */
+/* This includes all slide-specific styles */
+
+/* Base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: #000;
+    color: #fff;
+    overflow-x: hidden;
+}
+
+.slide {
+    width: 1920px;
+    height: 1080px;
+    background: #000;
+    position: relative;
+    margin: 0 auto 50px;
+    overflow: hidden;
+}
+
+/* Slide 1: The Hook */
+.hero-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.hero-content {
+    text-align: center;
+    z-index: 10;
+    position: relative;
+}
+
+.hero-metric {
+    font-size: 280px;
+    font-weight: 800;
+    line-height: 1.2;
+    background: linear-gradient(135deg, #ff0066 0%, #00ffff 50%, #ffff00 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 20px;
+    letter-spacing: -5px;
+    padding: 0 40px;
+    margin-top: -60px;
+}
+
+/* Continue copying ALL CSS from your complete deck... */
+/* This is just a template - you need to copy the entire CSS content */
