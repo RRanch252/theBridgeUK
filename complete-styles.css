@@ -1,32 +1,15 @@
-/* Universal spacing units */
---spacing-xs: 8px;
---spacing-sm: 16px;
---spacing-md: 24px;
---spacing-lg: 40px;
---spacing-xl: 60px;
---spacing-xxl: 80px;
-
-.slide-header {
-    margin-bottom: var(--spacing-xl);
-}
-
-.slide-title {
-    font-size: 72px;
-    font-weight: 800;
-    line-height: 1.1;
-    letter-spacing: -2px;
-    /* Remove gradient or apply to ALL */
-}
-
-.slide-subtitle {
-    font-size: 28px;
-    font-weight: 300;
-    color: #999;
-    margin-top: var(--spacing-sm);
-}
-
 /* complete-styles.css - All CSS from The Bridge Deck */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+
+:root {
+    /* Universal spacing units */
+    --spacing-xs: 8px;
+    --spacing-sm: 16px;
+    --spacing-md: 24px;
+    --spacing-lg: 40px;
+    --spacing-xl: 60px;
+    --spacing-xxl: 80px;
+}
 
 * {
     margin: 0;
@@ -476,12 +459,14 @@ body {
     height: 100%;
 }
 
-.slide-header {
+.financial-slide .slide-header,
+.investment-case-slide .slide-header {
     text-align: center;
-    margin-bottom: 80px;
+    margin-bottom: var(--spacing-xl);
 }
 
-.slide-title {
+.financial-slide .slide-title,
+.investment-case-slide .slide-title {
     font-size: 96px;
     font-weight: 800;
     line-height: 1.2;
@@ -493,10 +478,12 @@ body {
     padding: 0 20px;
 }
 
-.slide-subtitle {
+.financial-slide .slide-subtitle,
+.investment-case-slide .slide-subtitle {
     font-size: 32px;
     color: #999;
     font-weight: 300;
+    margin-top: var(--spacing-sm);
 }
 
 .charts-container {
