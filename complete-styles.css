@@ -6,6 +6,25 @@
 --spacing-xl: 60px;
 --spacing-xxl: 80px;
 
+.slide-header {
+    margin-bottom: var(--spacing-xl);
+}
+
+.slide-title {
+    font-size: 72px;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -2px;
+    /* Remove gradient or apply to ALL */
+}
+
+.slide-subtitle {
+    font-size: 28px;
+    font-weight: 300;
+    color: #999;
+    margin-top: var(--spacing-sm);
+}
+
 /* complete-styles.css - All CSS from The Bridge Deck */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
 
