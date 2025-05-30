@@ -1004,12 +1004,14 @@ body {
     align-items: center;
     padding: 100px;
     gap: 120px;
+    position: relative;
 }
 
 /* Left Side - Investment Opportunity */
 .left-section {
     flex: 1;
     max-width: 700px;
+    z-index: 10;
 }
 
 .main-title {
@@ -1119,6 +1121,7 @@ body {
     gap: 25px;
     align-content: center;
     max-width: 700px;
+    z-index: 10;
 }
 
 .thesis-card {
@@ -1182,9 +1185,8 @@ body {
 .thesis-card.hero .thesis-metric {
     font-size: 64px;
     background: linear-gradient(135deg, #00ff66, #00ffff);
-    color: #000;
-    -webkit-background-clip: unset;
-    -webkit-text-fill-color: unset;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 /* Background Elements */
