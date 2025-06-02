@@ -116,7 +116,7 @@ body {
 }
 
 .vision-header {
-    margin-bottom: 60px;
+    margin-bottom: 80px;
     text-align: center;
 }
 
@@ -124,7 +124,6 @@ body {
     font-size: clamp(48px, 6vw, 96px);
     font-weight: 800;
     line-height: 1;
-    margin-bottom: 20px;
     letter-spacing: -3px;
 }
 
@@ -250,7 +249,7 @@ body {
 }
 
 .team-header {
-    margin-bottom: 60px;
+    margin-bottom: 80px;
     text-align: center;
 }
 
@@ -258,7 +257,6 @@ body {
     font-size: clamp(40px, 5vw, 72px);
     font-weight: 800;
     line-height: 1;
-    margin-bottom: 20px;
     letter-spacing: -2px;
     background: linear-gradient(135deg, #fff 0%, #00ffff 50%, #fff 100%);
     -webkit-background-clip: text;
@@ -345,7 +343,7 @@ body {
 }
 
 .partnerships-header {
-    margin-bottom: 60px;
+    margin-bottom: 80px;
     text-align: center;
 }
 
@@ -353,7 +351,6 @@ body {
     font-size: clamp(40px, 5vw, 72px);
     font-weight: 800;
     line-height: 1;
-    margin-bottom: 20px;
     letter-spacing: -2px;
 }
 
@@ -732,7 +729,6 @@ body {
     font-size: clamp(28px, 3.5vw, 42px);
     font-weight: 800;
     letter-spacing: -2px;
-    margin-bottom: 10px;
     background: linear-gradient(135deg, #fff, #00ffff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -1000,7 +996,7 @@ body {
     background: linear-gradient(135deg, #ff0066, #00ffff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin: 20px 0;
+    margin: 20px 0 40px 0;
 }
 
 .subtitle {
