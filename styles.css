@@ -422,13 +422,15 @@ body {
 
 .financial-highlights-slide .slide-content {
     width: 100%;
-    max-width: 1400px;
+    max-width: 1800px;
+    padding: 0 20px;
 }
 
 .highlights-grid {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 20px;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    align-items: stretch;
     margin-top: 60px;
 }
 
@@ -441,6 +443,9 @@ body {
     position: relative;
     overflow: hidden;
     transition: all 0.3s ease;
+    flex: 1;
+    min-width: 0;
+    max-width: 250px;
 }
 
 .highlight-card::before {
