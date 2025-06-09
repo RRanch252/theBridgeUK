@@ -30,7 +30,7 @@
         }
 
         .logo-svg {
-            width: 120px;
+            width: 140px;
             height: auto;
         }
 
@@ -1631,28 +1631,53 @@
 </head>
 <body>
 
+<!-- Define the Bridge logo SVG once -->
+<svg style="display: none;">
+    <defs>
+        <g id="bridge-logo-group">
+            <!-- Radiating lines forming semicircle -->
+            <g transform="translate(100, 45)">
+                <!-- Create radiating lines -->
+                <path d="M -70,0 L -70,-25" stroke="#ff0066" stroke-width="3" stroke-linecap="round"/>
+                <path d="M -65,0 L -65,-27" stroke="#ff0066" stroke-width="3" stroke-linecap="round"/>
+                <path d="M -60,0 L -60,-29" stroke="#ff1a66" stroke-width="3" stroke-linecap="round"/>
+                <path d="M -55,0 L -55,-31" stroke="#ff3366" stroke-width="3" stroke-linecap="round"/>
+                <path d="M -50,0 L -50,-32" stroke="#ff4d66" stroke-width="3" stroke-linecap="round"/>
+                <path d="M -45,0 L -45,-33" stroke="#ff6666" stroke-width="3" stroke-linecap="round"/>
+                <path d="M -40,0 L -40,-34" stroke="#ff8066" stroke-width="3" stroke-linecap="round"/>
+                <path d="M -35,0 L -35,-35" stroke="#ff9966" stroke-width="3" stroke-linecap="round"/>
+                <path d="M -30,0 L -30,-36" stroke="#ffb366" stroke-width="3" stroke-linecap="round"/>
+                <path d="M -25,0 L -25,-37" stroke="#ffcc66" stroke-width="3" stroke-linecap="round"/>
+                <path d="M -20,0 L -20,-38" stroke="#ffe666" stroke-width="3" stroke-linecap="round"/>
+                <path d="M -15,0 L -15,-39" stroke="#ffff66" stroke-width="3" stroke-linecap="round"/>
+                <path d="M -10,0 L -10,-40" stroke="#e6ff66" stroke-width="3" stroke-linecap="round"/>
+                <path d="M -5,0 L -5,-40" stroke="#ccff66" stroke-width="3" stroke-linecap="round"/>
+                <path d="M 0,0 L 0,-40" stroke="#66ff66" stroke-width="3" stroke-linecap="round"/>
+                <path d="M 5,0 L 5,-40" stroke="#66ffcc" stroke-width="3" stroke-linecap="round"/>
+                <path d="M 10,0 L 10,-40" stroke="#66ffe6" stroke-width="3" stroke-linecap="round"/>
+                <path d="M 15,0 L 15,-39" stroke="#66ffff" stroke-width="3" stroke-linecap="round"/>
+                <path d="M 20,0 L 20,-38" stroke="#66e6ff" stroke-width="3" stroke-linecap="round"/>
+                <path d="M 25,0 L 25,-37" stroke="#66ccff" stroke-width="3" stroke-linecap="round"/>
+                <path d="M 30,0 L 30,-36" stroke="#66b3ff" stroke-width="3" stroke-linecap="round"/>
+                <path d="M 35,0 L 35,-35" stroke="#6699ff" stroke-width="3" stroke-linecap="round"/>
+                <path d="M 40,0 L 40,-34" stroke="#6680ff" stroke-width="3" stroke-linecap="round"/>
+                <path d="M 45,0 L 45,-33" stroke="#6666ff" stroke-width="3" stroke-linecap="round"/>
+                <path d="M 50,0 L 50,-32" stroke="#8066ff" stroke-width="3" stroke-linecap="round"/>
+                <path d="M 55,0 L 55,-31" stroke="#9966ff" stroke-width="3" stroke-linecap="round"/>
+                <path d="M 60,0 L 60,-29" stroke="#b366ff" stroke-width="3" stroke-linecap="round"/>
+                <path d="M 65,0 L 65,-27" stroke="#cc66ff" stroke-width="3" stroke-linecap="round"/>
+                <path d="M 70,0 L 70,-25" stroke="#e666ff" stroke-width="3" stroke-linecap="round"/>
+            </g>
+            <text x="100" y="50" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="800" fill="white" text-anchor="middle" letter-spacing="4">BRIDGE</text>
+        </g>
+    </defs>
+</svg>
+
 <!-- Slide 1: The Hook -->
 <div class="slide hero-slide">
     <div class="bridge-logo">
-        <svg class="logo-svg" viewBox="0 0 240 80" xmlns="http://www.w3.org/2000/svg">
-            <g fill="none" stroke-width="2">
-                <!-- Musical wave lines -->
-                <path d="M20 40 Q30 20 40 40 T60 40 T80 40 T100 40 T120 40 T140 40 T160 40 T180 40 T200 40 T220 40" 
-                      stroke="url(#gradient)" stroke-linecap="round"/>
-                <path d="M20 35 Q30 15 40 35 T60 35 T80 35 T100 35 T120 35 T140 35 T160 35 T180 35 T200 35 T220 35" 
-                      stroke="url(#gradient)" stroke-linecap="round" opacity="0.7"/>
-                <path d="M20 45 Q30 25 40 45 T60 45 T80 45 T100 45 T120 45 T140 45 T160 45 T180 45 T200 45 T220 45" 
-                      stroke="url(#gradient)" stroke-linecap="round" opacity="0.7"/>
-            </g>
-            <defs>
-                <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" style="stop-color:#ff0066;stop-opacity:1" />
-                    <stop offset="33%" style="stop-color:#ffff00;stop-opacity:1" />
-                    <stop offset="66%" style="stop-color:#00ffff;stop-opacity:1" />
-                    <stop offset="100%" style="stop-color:#ff00ff;stop-opacity:1" />
-                </linearGradient>
-            </defs>
-            <text x="120" y="65" font-family="Inter" font-size="24" font-weight="800" fill="white" text-anchor="middle">BRIDGE</text>
+        <svg class="logo-svg" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+            <use href="#bridge-logo-group"/>
         </svg>
     </div>
     <div class="gradient-orb"></div>
@@ -1682,24 +1707,8 @@
 <!-- Slide 2: The Vision -->
 <div class="slide vision-slide">
     <div class="bridge-logo">
-        <svg class="logo-svg" viewBox="0 0 240 80" xmlns="http://www.w3.org/2000/svg">
-            <g fill="none" stroke-width="2">
-                <path d="M20 40 Q30 20 40 40 T60 40 T80 40 T100 40 T120 40 T140 40 T160 40 T180 40 T200 40 T220 40" 
-                      stroke="url(#gradient2)" stroke-linecap="round"/>
-                <path d="M20 35 Q30 15 40 35 T60 35 T80 35 T100 35 T120 35 T140 35 T160 35 T180 35 T200 35 T220 35" 
-                      stroke="url(#gradient2)" stroke-linecap="round" opacity="0.7"/>
-                <path d="M20 45 Q30 25 40 45 T60 45 T80 45 T100 45 T120 45 T140 45 T160 45 T180 45 T200 45 T220 45" 
-                      stroke="url(#gradient2)" stroke-linecap="round" opacity="0.7"/>
-            </g>
-            <defs>
-                <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" style="stop-color:#ff0066;stop-opacity:1" />
-                    <stop offset="33%" style="stop-color:#ffff00;stop-opacity:1" />
-                    <stop offset="66%" style="stop-color:#00ffff;stop-opacity:1" />
-                    <stop offset="100%" style="stop-color:#ff00ff;stop-opacity:1" />
-                </linearGradient>
-            </defs>
-            <text x="120" y="65" font-family="Inter" font-size="24" font-weight="800" fill="white" text-anchor="middle">BRIDGE</text>
+        <svg class="logo-svg" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+            <use href="#bridge-logo-group"/>
         </svg>
     </div>
     <div class="slide-content">
@@ -1776,24 +1785,8 @@
 <!-- Slide 3: The Team -->
 <div class="slide team-slide">
     <div class="bridge-logo">
-        <svg class="logo-svg" viewBox="0 0 240 80" xmlns="http://www.w3.org/2000/svg">
-            <g fill="none" stroke-width="2">
-                <path d="M20 40 Q30 20 40 40 T60 40 T80 40 T100 40 T120 40 T140 40 T160 40 T180 40 T200 40 T220 40" 
-                      stroke="url(#gradient3)" stroke-linecap="round"/>
-                <path d="M20 35 Q30 15 40 35 T60 35 T80 35 T100 35 T120 35 T140 35 T160 35 T180 35 T200 35 T220 35" 
-                      stroke="url(#gradient3)" stroke-linecap="round" opacity="0.7"/>
-                <path d="M20 45 Q30 25 40 45 T60 45 T80 45 T100 45 T120 45 T140 45 T160 45 T180 45 T200 45 T220 45" 
-                      stroke="url(#gradient3)" stroke-linecap="round" opacity="0.7"/>
-            </g>
-            <defs>
-                <linearGradient id="gradient3" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" style="stop-color:#ff0066;stop-opacity:1" />
-                    <stop offset="33%" style="stop-color:#ffff00;stop-opacity:1" />
-                    <stop offset="66%" style="stop-color:#00ffff;stop-opacity:1" />
-                    <stop offset="100%" style="stop-color:#ff00ff;stop-opacity:1" />
-                </linearGradient>
-            </defs>
-            <text x="120" y="65" font-family="Inter" font-size="24" font-weight="800" fill="white" text-anchor="middle">BRIDGE</text>
+        <svg class="logo-svg" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+            <use href="#bridge-logo-group"/>
         </svg>
     </div>
     <div class="slide-content">
@@ -1854,24 +1847,8 @@
 <!-- Slide 4: Strategic Partnerships -->
 <div class="slide partnerships-slide">
     <div class="bridge-logo">
-        <svg class="logo-svg" viewBox="0 0 240 80" xmlns="http://www.w3.org/2000/svg">
-            <g fill="none" stroke-width="2">
-                <path d="M20 40 Q30 20 40 40 T60 40 T80 40 T100 40 T120 40 T140 40 T160 40 T180 40 T200 40 T220 40" 
-                      stroke="url(#gradient4)" stroke-linecap="round"/>
-                <path d="M20 35 Q30 15 40 35 T60 35 T80 35 T100 35 T120 35 T140 35 T160 35 T180 35 T200 35 T220 35" 
-                      stroke="url(#gradient4)" stroke-linecap="round" opacity="0.7"/>
-                <path d="M20 45 Q30 25 40 45 T60 45 T80 45 T100 45 T120 45 T140 45 T160 45 T180 45 T200 45 T220 45" 
-                      stroke="url(#gradient4)" stroke-linecap="round" opacity="0.7"/>
-            </g>
-            <defs>
-                <linearGradient id="gradient4" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" style="stop-color:#ff0066;stop-opacity:1" />
-                    <stop offset="33%" style="stop-color:#ffff00;stop-opacity:1" />
-                    <stop offset="66%" style="stop-color:#00ffff;stop-opacity:1" />
-                    <stop offset="100%" style="stop-color:#ff00ff;stop-opacity:1" />
-                </linearGradient>
-            </defs>
-            <text x="120" y="65" font-family="Inter" font-size="24" font-weight="800" fill="white" text-anchor="middle">BRIDGE</text>
+        <svg class="logo-svg" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+            <use href="#bridge-logo-group"/>
         </svg>
     </div>
     <div class="slide-content">
@@ -1938,24 +1915,8 @@
 <!-- Slide 5: Financial Highlights - NEW INTEGRATED STYLE -->
 <div class="slide financial-highlights-slide">
     <div class="bridge-logo">
-        <svg class="logo-svg" viewBox="0 0 240 80" xmlns="http://www.w3.org/2000/svg">
-            <g fill="none" stroke-width="2">
-                <path d="M20 40 Q30 20 40 40 T60 40 T80 40 T100 40 T120 40 T140 40 T160 40 T180 40 T200 40 T220 40" 
-                      stroke="url(#gradient5)" stroke-linecap="round"/>
-                <path d="M20 35 Q30 15 40 35 T60 35 T80 35 T100 35 T120 35 T140 35 T160 35 T180 35 T200 35 T220 35" 
-                      stroke="url(#gradient5)" stroke-linecap="round" opacity="0.7"/>
-                <path d="M20 45 Q30 25 40 45 T60 45 T80 45 T100 45 T120 45 T140 45 T160 45 T180 45 T200 45 T220 45" 
-                      stroke="url(#gradient5)" stroke-linecap="round" opacity="0.7"/>
-            </g>
-            <defs>
-                <linearGradient id="gradient5" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" style="stop-color:#ff0066;stop-opacity:1" />
-                    <stop offset="33%" style="stop-color:#ffff00;stop-opacity:1" />
-                    <stop offset="66%" style="stop-color:#00ffff;stop-opacity:1" />
-                    <stop offset="100%" style="stop-color:#ff00ff;stop-opacity:1" />
-                </linearGradient>
-            </defs>
-            <text x="120" y="65" font-family="Inter" font-size="24" font-weight="800" fill="white" text-anchor="middle">BRIDGE</text>
+        <svg class="logo-svg" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+            <use href="#bridge-logo-group"/>
         </svg>
     </div>
     <div class="gradient-orb"></div>
@@ -2156,24 +2117,8 @@
 <!-- Slide 6: Financial Projections -->
 <div class="slide financial-slide">
     <div class="bridge-logo">
-        <svg class="logo-svg" viewBox="0 0 240 80" xmlns="http://www.w3.org/2000/svg">
-            <g fill="none" stroke-width="2">
-                <path d="M20 40 Q30 20 40 40 T60 40 T80 40 T100 40 T120 40 T140 40 T160 40 T180 40 T200 40 T220 40" 
-                      stroke="url(#gradient6)" stroke-linecap="round"/>
-                <path d="M20 35 Q30 15 40 35 T60 35 T80 35 T100 35 T120 35 T140 35 T160 35 T180 35 T200 35 T220 35" 
-                      stroke="url(#gradient6)" stroke-linecap="round" opacity="0.7"/>
-                <path d="M20 45 Q30 25 40 45 T60 45 T80 45 T100 45 T120 45 T140 45 T160 45 T180 45 T200 45 T220 45" 
-                      stroke="url(#gradient6)" stroke-linecap="round" opacity="0.7"/>
-            </g>
-            <defs>
-                <linearGradient id="gradient6" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" style="stop-color:#ff0066;stop-opacity:1" />
-                    <stop offset="33%" style="stop-color:#ffff00;stop-opacity:1" />
-                    <stop offset="66%" style="stop-color:#00ffff;stop-opacity:1" />
-                    <stop offset="100%" style="stop-color:#ff00ff;stop-opacity:1" />
-                </linearGradient>
-            </defs>
-            <text x="120" y="65" font-family="Inter" font-size="24" font-weight="800" fill="white" text-anchor="middle">BRIDGE</text>
+        <svg class="logo-svg" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+            <use href="#bridge-logo-group"/>
         </svg>
     </div>
     <div class="gradient-bg"></div>
@@ -2299,24 +2244,8 @@
 <!-- Slide 7: Launch Roadmap -->
 <div class="slide roadmap-slide">
     <div class="bridge-logo">
-        <svg class="logo-svg" viewBox="0 0 240 80" xmlns="http://www.w3.org/2000/svg">
-            <g fill="none" stroke-width="2">
-                <path d="M20 40 Q30 20 40 40 T60 40 T80 40 T100 40 T120 40 T140 40 T160 40 T180 40 T200 40 T220 40" 
-                      stroke="url(#gradient7)" stroke-linecap="round"/>
-                <path d="M20 35 Q30 15 40 35 T60 35 T80 35 T100 35 T120 35 T140 35 T160 35 T180 35 T200 35 T220 35" 
-                      stroke="url(#gradient7)" stroke-linecap="round" opacity="0.7"/>
-                <path d="M20 45 Q30 25 40 45 T60 45 T80 45 T100 45 T120 45 T140 45 T160 45 T180 45 T200 45 T220 45" 
-                      stroke="url(#gradient7)" stroke-linecap="round" opacity="0.7"/>
-            </g>
-            <defs>
-                <linearGradient id="gradient7" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" style="stop-color:#ff0066;stop-opacity:1" />
-                    <stop offset="33%" style="stop-color:#ffff00;stop-opacity:1" />
-                    <stop offset="66%" style="stop-color:#00ffff;stop-opacity:1" />
-                    <stop offset="100%" style="stop-color:#ff00ff;stop-opacity:1" />
-                </linearGradient>
-            </defs>
-            <text x="120" y="65" font-family="Inter" font-size="24" font-weight="800" fill="white" text-anchor="middle">BRIDGE</text>
+        <svg class="logo-svg" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+            <use href="#bridge-logo-group"/>
         </svg>
     </div>
     <div class="roadmap-container">
@@ -2445,24 +2374,8 @@
 <!-- Slide 8: Investment Case -->
 <div class="slide investment-case-slide">
     <div class="bridge-logo">
-        <svg class="logo-svg" viewBox="0 0 240 80" xmlns="http://www.w3.org/2000/svg">
-            <g fill="none" stroke-width="2">
-                <path d="M20 40 Q30 20 40 40 T60 40 T80 40 T100 40 T120 40 T140 40 T160 40 T180 40 T200 40 T220 40" 
-                      stroke="url(#gradient8)" stroke-linecap="round"/>
-                <path d="M20 35 Q30 15 40 35 T60 35 T80 35 T100 35 T120 35 T140 35 T160 35 T180 35 T200 35 T220 35" 
-                      stroke="url(#gradient8)" stroke-linecap="round" opacity="0.7"/>
-                <path d="M20 45 Q30 25 40 45 T60 45 T80 45 T100 45 T120 45 T140 45 T160 45 T180 45 T200 45 T220 45" 
-                      stroke="url(#gradient8)" stroke-linecap="round" opacity="0.7"/>
-            </g>
-            <defs>
-                <linearGradient id="gradient8" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" style="stop-color:#ff0066;stop-opacity:1" />
-                    <stop offset="33%" style="stop-color:#ffff00;stop-opacity:1" />
-                    <stop offset="66%" style="stop-color:#00ffff;stop-opacity:1" />
-                    <stop offset="100%" style="stop-color:#ff00ff;stop-opacity:1" />
-                </linearGradient>
-            </defs>
-            <text x="120" y="65" font-family="Inter" font-size="24" font-weight="800" fill="white" text-anchor="middle">BRIDGE</text>
+        <svg class="logo-svg" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+            <use href="#bridge-logo-group"/>
         </svg>
     </div>
     <div class="gradient-orb" style="background: radial-gradient(circle, rgba(0,255,255,0.15) 0%, transparent 60%);"></div>
@@ -2570,24 +2483,8 @@
 <!-- Slide 9: Investment Opportunity -->
 <div class="slide opportunity-slide">
     <div class="bridge-logo">
-        <svg class="logo-svg" viewBox="0 0 240 80" xmlns="http://www.w3.org/2000/svg">
-            <g fill="none" stroke-width="2">
-                <path d="M20 40 Q30 20 40 40 T60 40 T80 40 T100 40 T120 40 T140 40 T160 40 T180 40 T200 40 T220 40" 
-                      stroke="url(#gradient9)" stroke-linecap="round"/>
-                <path d="M20 35 Q30 15 40 35 T60 35 T80 35 T100 35 T120 35 T140 35 T160 35 T180 35 T200 35 T220 35" 
-                      stroke="url(#gradient9)" stroke-linecap="round" opacity="0.7"/>
-                <path d="M20 45 Q30 25 40 45 T60 45 T80 45 T100 45 T120 45 T140 45 T160 45 T180 45 T200 45 T220 45" 
-                      stroke="url(#gradient9)" stroke-linecap="round" opacity="0.7"/>
-            </g>
-            <defs>
-                <linearGradient id="gradient9" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" style="stop-color:#ff0066;stop-opacity:1" />
-                    <stop offset="33%" style="stop-color:#ffff00;stop-opacity:1" />
-                    <stop offset="66%" style="stop-color:#00ffff;stop-opacity:1" />
-                    <stop offset="100%" style="stop-color:#ff00ff;stop-opacity:1" />
-                </linearGradient>
-            </defs>
-            <text x="120" y="65" font-family="Inter" font-size="24" font-weight="800" fill="white" text-anchor="middle">BRIDGE</text>
+        <svg class="logo-svg" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+            <use href="#bridge-logo-group"/>
         </svg>
     </div>
     <div class="gradient-orb" style="background: radial-gradient(circle, rgba(255,0,102,0.15) 0%, rgba(0,255,255,0.1) 50%, transparent 70%); right: -300px; animation: float 20s ease-in-out infinite;"></div>
