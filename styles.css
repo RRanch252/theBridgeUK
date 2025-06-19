@@ -1,2519 +1,1644 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Bridge - Investment Deck</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, sans-serif;
-            background: #000;
-            color: #fff;
-            overflow-x: hidden;
-        }
-
-        /* Bridge Logo for all slides */
-        .bridge-logo {
-            position: absolute;
-            top: 40px;
-            left: 40px;
-            z-index: 100;
-            opacity: 0.9;
-        }
-
-        .logo-img {
-            width: 160px;
-            height: auto;
-        }
-
-        /* Base slide - centered container */
-        .slide {
-            width: 100%;
-            min-height: 100vh;
-            background: #000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            padding: 40px;
-            margin-bottom: 50px;
-        }
-
-        /* Animations */
-        @keyframes pulse {
-            0%, 100% { transform: translate(-50%, -50%) scale(1); }
-            50% { transform: translate(-50%, -50%) scale(1.1); }
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(-50%) translateX(0); }
-            50% { transform: translateY(-50%) translateX(-50px); }
-        }
-
-        /* Slide 1: The Hook */
-        .hero-slide {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .hero-content {
-            text-align: center;
-            z-index: 10;
-            width: 100%;
-            max-width: 1400px;
-        }
-
-        .hero-metric {
-            font-size: clamp(120px, 15vw, 280px);
-            font-weight: 800;
-            line-height: 1.2;
-            background: linear-gradient(135deg, #ff0066 0%, #00ffff 50%, #ffff00 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 20px;
-            letter-spacing: -5px;
-        }
-
-        .proof-grid {
-            display: flex;
-            gap: 60px;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            margin-top: 80px;
-        }
-
-        .proof-stat {
-            text-align: center;
-        }
-
-        .proof-number {
-            font-size: clamp(48px, 5vw, 72px);
-            font-weight: 800;
-            color: #00ffff;
-            margin-bottom: 10px;
-        }
-
-        .proof-label {
-            font-size: clamp(16px, 2vw, 20px);
-            color: #999;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .gradient-orb {
-            position: absolute;
-            width: 50%;
-            aspect-ratio: 1;
-            background: radial-gradient(circle, rgba(255,0,102,0.3) 0%, rgba(0,255,255,0.2) 50%, transparent 70%);
-            filter: blur(100px);
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            animation: pulse 8s ease-in-out infinite;
-            z-index: 0;
-        }
-
-        /* Slide 2: The Vision */
-        .vision-slide {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .vision-slide .slide-content {
-            width: 100%;
-            max-width: 1600px;
-            padding: 0 40px;
-        }
-
-        .vision-header {
-            margin-bottom: 80px;
-            text-align: center;
-        }
-
-        .vision-title {
-            font-size: clamp(48px, 6vw, 96px);
-            font-weight: 800;
-            line-height: 1;
-            letter-spacing: -3px;
-        }
-
-        .vision-subtitle {
-            font-size: clamp(24px, 3vw, 32px);
-            font-weight: 300;
-            color: #999;
-        }
-
-        .timeline-visual {
-            position: relative;
-            height: 280px;
-            margin: 60px 0;
-            padding: 40px 0;
-        }
-
-        .timeline-line {
-            position: absolute;
-            top: 50%;
-            left: 5%;
-            right: 5%;
-            height: 4px;
-            background: linear-gradient(90deg, #00ff66 0%, #00ffff 20%, #ff0066 40%, #ffff00 60%, #ff00ff 80%, #00ff66 100%);
-            transform: translateY(-50%);
-        }
-
-        .timeline-point {
-            position: absolute;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 10;
-        }
-
-        .timeline-point:hover {
-            transform: translate(-50%, -60%);
-        }
-
-        .timeline-point:nth-child(2) { left: 8%; }
-        .timeline-point:nth-child(3) { left: 24%; }
-        .timeline-point:nth-child(4) { left: 40%; }
-        .timeline-point:nth-child(5) { left: 56%; }
-        .timeline-point:nth-child(6) { left: 72%; }
-        .timeline-point:nth-child(7) { left: 88%; }
-
-        .point-circle {
-            width: 90px;
-            height: 90px;
-            background: #000;
-            border: 4px solid #fff;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            font-weight: 800;
-            margin: 0 auto 20px;
-        }
-
-        .point-label {
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 8px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .point-value {
-            font-size: 18px;
-            font-weight: 800;
-            color: #00ffff;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .bottom-metrics {
-            display: flex;
-            justify-content: space-between;
-            gap: 30px;
-            flex-wrap: wrap;
-        }
-
-        .metric-block {
-            flex: 1;
-            min-width: 250px;
-            padding: 30px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 24px;
-            backdrop-filter: blur(10px);
-        }
-
-        .metric-title {
-            font-size: 16px;
-            color: #999;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .metric-value {
-            font-size: clamp(32px, 4vw, 48px);
-            font-weight: 800;
-            color: #fff;
-            margin-bottom: 10px;
-        }
-
-        .metric-detail {
-            font-size: 14px;
-            color: #ccc;
-            line-height: 1.5;
-        }
-
-        /* Slide 3: Team - UPDATED FOR SINGLE ROW */
-        .team-slide {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .team-slide .slide-content {
-            width: 100%;
-            max-width: 1600px;
-        }
-
-        .team-header {
-            margin-bottom: 80px;
-            text-align: center;
-        }
-
-        .team-title {
-            font-size: clamp(40px, 5vw, 72px);
-            font-weight: 800;
-            line-height: 1;
-            letter-spacing: -2px;
-            background: linear-gradient(135deg, #fff 0%, #00ffff 50%, #fff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .team-subtitle {
-            font-size: clamp(20px, 2.5vw, 28px);
-            color: #999;
-            font-weight: 300;
-        }
-
-        /* Force 6 columns in one row */
-        .team-grid-main {
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            gap: 20px;
-        }
-
-        .team-member-card {
-            background: rgba(255,255,255,0.05);
-            border: 2px solid rgba(255,255,255,0.1);
-            border-radius: 20px;
-            padding: 20px 15px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-
-        .team-member-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(0,255,255,0.3);
-        }
-
-        .team-member-card.featured {
-            background: rgba(255,0,102,0.1);
-            border-color: rgba(255,0,102,0.3);
-        }
-
-        .image-placeholder {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #ff0066, #00ffff);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 22px;
-            font-weight: 800;
-            color: #000;
-            margin-bottom: 15px;
-        }
-
-        .member-name {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 5px;
-        }
-
-        .member-role {
-            font-size: 14px;
-            color: #00ffff;
-            margin-bottom: 12px;
-        }
-
-        .member-achievement {
-            font-size: 11px;
-            color: #999;
-            line-height: 1.3;
-        }
-
-        /* Slide 4: Partnerships */
-        .partnerships-slide {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .partnerships-slide .slide-content {
-            width: 100%;
-            max-width: 1600px;
-        }
-
-        .partnerships-header {
-            margin-bottom: 80px;
-            text-align: center;
-        }
-
-        .partnerships-title {
-            font-size: clamp(40px, 5vw, 72px);
-            font-weight: 800;
-            line-height: 1;
-            letter-spacing: -2px;
-        }
-
-        .partnerships-subtitle {
-            font-size: clamp(20px, 2.5vw, 28px);
-            color: #999;
-            font-weight: 300;
-        }
-
-        .partnerships-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-        }
-
-        .partnership-category {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .category-title {
-            font-size: 22px;
-            font-weight: 600;
-            color: #00ffff;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .partner-card {
-            background: rgba(255,255,255,0.05);
-            border: 2px solid rgba(255,255,255,0.1);
-            border-radius: 16px;
-            padding: 25px;
-            text-align: center;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-
-        .partner-card:hover {
-            transform: translateY(-3px);
-            border-color: rgba(0,255,255,0.3);
-        }
-
-        .partner-card.major {
-            background: rgba(0,255,255,0.1);
-            border-color: rgba(0,255,255,0.3);
-        }
-
-        .partner-logo {
-            font-size: 18px;
-            font-weight: 800;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
-        }
-
-        .partner-detail {
-            font-size: 13px;
-            color: #999;
-        }
-
-        /* Slide 5: Financial Highlights - NEW STYLE */
-        .financial-highlights-slide {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 40px;
-        }
-
-        .financial-highlights-slide .gradient-orb {
-            width: 60%;
-            aspect-ratio: 1;
-            background: radial-gradient(circle, rgba(255,0,102,0.2) 0%, rgba(0,255,255,0.1) 50%, transparent 70%);
-            filter: blur(100px);
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 0;
-        }
-
-        .financial-highlights-slide .slide-title {
-            font-size: clamp(48px, 6vw, 72px);
-            font-weight: 800;
-            line-height: 1.2;
-            letter-spacing: -3px;
-            background: linear-gradient(135deg, #fff 0%, #00ffff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-align: center;
-            margin-bottom: 80px;
-            padding-bottom: 10px;
-            z-index: 1;
-        }
-
-        .financial-content-wrapper {
-            display: flex;
-            gap: 30px;
-            max-width: 1600px;
-            margin: 0 auto;
-            width: 100%;
-            z-index: 1;
-            position: relative;
-        }
-
-        .financial-left-column {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-            flex: 1;
-        }
-
-        .financial-right-column {
-            flex: 1;
-        }
-
-        .financial-metric-box {
-            background: rgba(30, 30, 30, 0.9);
-            border: 1px solid rgba(60, 60, 60, 0.5);
-            border-radius: 20px;
-            padding: 35px;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .financial-box-title {
-            font-size: 18px;
-            font-weight: 700;
-            color: #00ffff;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 30px;
-        }
-
-        /* Use of Funds Section */
-        .use-of-funds-content {
-            display: flex;
-            align-items: center;
-            gap: 40px;
-            flex: 1;
-        }
-
-        .donut-wrapper {
-            position: relative;
-            width: 180px;
-            height: 180px;
-            flex-shrink: 0;
-        }
-
-        .donut-chart {
-            width: 100%;
-            height: 100%;
-            transform: rotate(-90deg);
-        }
-
-        .donut-center {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 60%;
-            height: 60%;
-            background: #000;
-            border-radius: 50%;
-        }
-
-        .funds-legend {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            flex: 1;
-        }
-
-        .legend-item {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .legend-color {
-            width: 12px;
-            height: 12px;
-            border-radius: 3px;
-            flex-shrink: 0;
-        }
-
-        .legend-text {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            flex: 1;
-        }
-
-        .legend-label {
-            font-size: 15px;
-            color: #fff;
-            font-weight: 500;
-        }
-
-        .legend-value {
-            font-size: 18px;
-            font-weight: 700;
-            color: #00ff66;
-            margin-left: auto;
-        }
-
-        /* Unit Economics */
-        .unit-economics-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
-            flex: 1;
-        }
-
-        .unit-item {
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(80, 80, 80, 0.3);
-            border-radius: 12px;
-            padding: 25px;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .unit-value {
-            font-size: 36px;
-            font-weight: 800;
-            color: #00ff66;
-            margin-bottom: 8px;
-            line-height: 1;
-        }
-
-        .unit-label {
-            font-size: 13px;
-            color: #999;
-            line-height: 1.4;
-        }
-
-        /* Growth Trajectory Section */
-        .growth-content {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-            flex: 1;
-        }
-
-        /* Timeline visualization */
-        .timeline-section {
-            flex: 1;
-        }
-
-        .financial-timeline-visual {
-            position: relative;
-            height: 100px;
-            margin: 20px 0;
-        }
-
-        .financial-timeline-line {
-            position: absolute;
-            top: 35px;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #444 0%, #0066ff 33%, #00aaff 66%, #00ff66 100%);
-        }
-
-        .financial-timeline-points {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 100%;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .financial-timeline-point {
-            position: relative;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .financial-point-circle {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            background: #000;
-            border: 3px solid #444;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 10px;
-        }
-
-        .financial-timeline-point:nth-child(2) .financial-point-circle {
-            border-color: #0066ff;
-        }
-
-        .financial-timeline-point:nth-child(3) .financial-point-circle {
-            border-color: #00aaff;
-        }
-
-        .financial-timeline-point:nth-child(4) .financial-point-circle {
-            border-color: #00ff66;
-        }
-
-        .financial-point-label {
-            font-size: 11px;
-            color: #666;
-            margin-bottom: 2px;
-        }
-
-        .financial-point-growth {
-            font-size: 13px;
-            color: #00ff66;
-            font-weight: 600;
-        }
-
-        .financial-timeline-label {
-            text-align: center;
-            font-size: 12px;
-            color: #666;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-top: 10px;
-        }
-
-        /* Metrics Grid */
-        .metrics-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
-        }
-
-        .metric-section {
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(80, 80, 80, 0.3);
-            border-radius: 12px;
-            padding: 25px;
-        }
-
-        .section-title {
-            font-size: 13px;
-            font-weight: 600;
-            color: #999;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 20px;
-        }
-
-        /* Milestones */
-        .milestones {
-            display: flex;
-            justify-content: space-between;
-            gap: 20px;
-        }
-
-        .milestone {
-            text-align: center;
-            flex: 1;
-        }
-
-        .milestone-icon {
-            font-size: 24px;
-            margin-bottom: 8px;
-        }
-
-        .milestone-value {
-            font-size: 20px;
-            font-weight: 700;
-            color: #ff0066;
-            margin-bottom: 4px;
-        }
-
-        .milestone-label {
-            font-size: 10px;
-            color: #666;
-            text-transform: uppercase;
-        }
-
-        /* Projections */
-        .projections {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .projection-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .projection-label {
-            font-size: 13px;
-            color: #999;
-        }
-
-        .projection-value {
-            font-size: 22px;
-            font-weight: 700;
-            color: #00ff66;
-        }
-
-        .cagr-highlight {
-            background: rgba(0, 255, 102, 0.1);
-            border: 1px solid rgba(0, 255, 102, 0.3);
-            border-radius: 8px;
-            padding: 12px;
-            margin-top: 5px;
-        }
-
-        /* Cash Flow Timeline */
-        .cashflow-section {
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(80, 80, 80, 0.3);
-            border-radius: 12px;
-            padding: 25px;
-            margin-top: 25px;
-        }
-
-        .cashflow-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .cashflow-title {
-            font-size: 13px;
-            font-weight: 600;
-            color: #999;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .cashflow-target {
-            font-size: 20px;
-            font-weight: 700;
-            color: #00ff66;
-            background: rgba(0, 255, 102, 0.1);
-            padding: 4px 12px;
-            border-radius: 12px;
-            border: 1px solid rgba(0, 255, 102, 0.3);
-        }
-
-        .cashflow-bar {
-            height: 30px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            position: relative;
-            overflow: hidden;
-            margin-bottom: 15px;
-        }
-
-        .cashflow-progress {
-            position: absolute;
-            left: 0;
-            top: 0;
-            height: 100%;
-            width: 83%;
-            background: linear-gradient(90deg, #ff0066 0%, #0066ff 50%, #00ff66 83%);
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: space-around;
-            padding: 0 20px;
-            font-size: 11px;
-            font-weight: 600;
-            color: #000;
-        }
-
-        .cashflow-metrics {
-            display: flex;
-            justify-content: space-between;
-            font-size: 12px;
-        }
-
-        .cashflow-metric span:first-child {
-            color: #666;
-        }
-
-        .cashflow-metric span:last-child {
-            font-weight: 600;
-            margin-left: 5px;
-        }
-
-        .burn-rate {
-            color: #ff0066;
-        }
-
-        .break-even {
-            color: #00ff66;
-        }
-
-        /* Slide 6: Financial Projections */
-        .financial-slide {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .financial-slide .slide-content {
-            width: 100%;
-            max-width: 1600px;
-        }
-
-        .slide-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .slide-title {
-            font-size: clamp(48px, 6vw, 96px);
-            font-weight: 800;
-            line-height: 1.2;
-            margin-bottom: 20px;
-            letter-spacing: -3px;
-            background: linear-gradient(135deg, #fff 0%, #00ffff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .charts-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 60px;
-        }
-
-        .chart-wrapper,
-        .revenue-mix-chart {
-            background: rgba(255,255,255,0.05);
-            border-radius: 32px;
-            padding: 40px;
-            min-height: 500px;
-        }
-
-        .chart-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .chart-title {
-            font-size: 24px;
-            font-weight: 700;
-        }
-
-        .chart-legend {
-            display: flex;
-            gap: 20px;
-            font-size: 13px;
-        }
-
-        .legend-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .legend-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-        }
-
-        .chart-area {
-            height: 350px;
-            position: relative;
-            display: flex;
-            align-items: flex-end;
-            justify-content: space-around;
-            padding: 0 20px;
-        }
-
-        .year-bar {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-            max-width: 120px;
-        }
-
-        .revenue-bar {
-            width: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #000;
-            font-weight: 700;
-            font-size: 16px;
-            border-radius: 8px 8px 0 0;
-            margin-bottom: 20px;
-            transition: all 0.3s ease;
-        }
-
-        .revenue-bar:hover {
-            transform: scaleY(1.05);
-            filter: brightness(1.2);
-        }
-
-        .year-label {
-            font-size: 16px;
-            font-weight: 600;
-            color: #999;
-        }
-
-        .revenue-years {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-
-        .year-column {
-            text-align: center;
-        }
-
-        .mix-year-label {
-            font-size: 16px;
-            font-weight: 600;
-            color: #999;
-            margin-bottom: 15px;
-        }
-
-        .revenue-total {
-            font-size: 24px;
-            font-weight: 800;
-            background: linear-gradient(135deg, #00ff66, #00ffff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 15px;
-        }
-
-        .revenue-breakdown {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-            border-radius: 12px;
-            overflow: hidden;
-            height: 200px;
-        }
-
-        .revenue-segment {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #000;
-            font-weight: 600;
-            font-size: 12px;
-            transition: all 0.3s ease;
-        }
-
-        .segment-musical { background: linear-gradient(135deg, #ff0066, #ff3399); }
-        .segment-songs { background: linear-gradient(135deg, #0066ff, #0099ff); }
-        .segment-events { background: linear-gradient(135deg, #00ff66, #00ffaa); }
-        .segment-merch { background: linear-gradient(135deg, #ffaa00, #ffcc00); }
-        .segment-podcast { background: linear-gradient(135deg, #aa00ff, #cc00ff); }
-
-        .revenue-legend {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 30px;
-            justify-content: center;
-            font-size: 11px;
-        }
-
-        .mix-legend-item {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .mix-legend-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 3px;
-        }
-
-        /* Slide 7: Roadmap */
-        .roadmap-slide {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .roadmap-container {
-            width: 100%;
-            max-width: 1800px;
-            background: #000;
-            border-radius: 24px;
-            overflow: hidden;
-            border: 2px solid rgba(255,255,255,0.1);
-        }
-
-        .roadmap-header {
-            background: linear-gradient(135deg, rgba(255,0,102,0.2) 0%, rgba(0,255,255,0.2) 100%);
-            padding: 30px;
-            text-align: center;
-            position: relative;
-        }
-
-        .roadmap-header::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #ff0066, #00ffff, #ffff00, #ff00ff);
-        }
-
-        .roadmap-title {
-            font-size: clamp(28px, 3.5vw, 42px);
-            font-weight: 800;
-            letter-spacing: -2px;
-            background: linear-gradient(135deg, #fff, #00ffff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .roadmap-subtitle {
-            font-size: 16px;
-            color: #ccc;
-            font-weight: 300;
-        }
-
-        .timeline-months {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            background: rgba(255,255,255,0.05);
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .month {
-            padding: 15px 5px;
-            text-align: center;
-            border-right: 1px solid rgba(255,255,255,0.1);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 12px;
-        }
-
-        .month.current {
-            background: rgba(0,255,255,0.1);
-            color: #00ffff;
-        }
-
-        .roadmap-body {
-            padding: 30px;
-        }
-
-        .roadmap-category {
-            margin-bottom: 30px;
-        }
-
-        .category-title {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: #00ffff;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .task-row {
-            display: grid;
-            grid-template-columns: 200px 1fr;
-            align-items: center;
-            margin-bottom: 10px;
-            gap: 20px;
-        }
-
-        .task-name {
-            font-size: 13px;
-            font-weight: 500;
-            color: #ddd;
-        }
-
-        .task-timeline {
-            position: relative;
-            height: 28px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 14px;
-            overflow: hidden;
-        }
-
-        .task-bar {
-            position: absolute;
-            height: 100%;
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            padding: 0 15px;
-            font-size: 11px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .task-bar:hover {
-            transform: scaleY(1.1);
-            filter: brightness(1.2);
-        }
-
-        .task-bar.completed { background: linear-gradient(135deg, #00ff66, #00ffaa); color: #000; }
-        .task-bar.critical { background: linear-gradient(135deg, #ff0066, #ff3366); }
-        .task-bar.major { background: linear-gradient(135deg, #0066ff, #00aaff); }
-        .task-bar.supporting { background: linear-gradient(135deg, #ffaa00, #ffcc00); color: #000; }
-        .task-bar.ongoing {
-            background: repeating-linear-gradient(
-                45deg,
-                rgba(255,255,255,0.1),
-                rgba(255,255,255,0.1) 8px,
-                rgba(255,255,255,0.2) 8px,
-                rgba(255,255,255,0.2) 16px
-            );
-            border: 1px dotted rgba(255,255,255,0.3);
-        }
-
-        .roadmap-legend {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            flex-wrap: wrap;
-        }
-
-        .roadmap-legend-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .roadmap-legend-color {
-            width: 20px;
-            height: 12px;
-            border-radius: 6px;
-        }
-
-        .roadmap-legend-label {
-            font-size: 11px;
-            color: #999;
-        }
-
-        /* Slide 8: Investment Case */
-        .investment-case-slide {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .investment-case-slide .slide-content {
-            width: 100%;
-            max-width: 1400px;
-        }
-
-        .content-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-        }
-
-        .proof-card {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 24px;
-            padding: 35px;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .proof-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, transparent, #00ffff, transparent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .proof-card:hover {
-            background: rgba(255,255,255,0.06);
-            transform: translateY(-3px);
-            border-color: rgba(0,255,255,0.2);
-        }
-
-        .proof-card:hover::before {
-            opacity: 1;
-        }
-
-        .card-header {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            margin-bottom: 25px;
-        }
-
-        .card-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #ff0066, #00ffff);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            font-weight: 800;
-            color: #000;
-        }
-
-        .card-title {
-            font-size: 24px;
-            font-weight: 700;
-            color: #fff;
-        }
-
-        .proof-points {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .proof-item {
-            padding-left: 20px;
-            position: relative;
-        }
-
-        .proof-item::before {
-            content: '▸';
-            position: absolute;
-            left: 0;
-            top: 2px;
-            color: #00ff66;
-            font-size: 16px;
-        }
-
-        .proof-text {
-            font-size: 15px;
-            line-height: 1.5;
-            color: #ddd;
-        }
-
-        .proof-text strong {
-            color: #fff;
-            font-weight: 600;
-        }
-
-        /* Slide 9: Investment Opportunity */
-        .opportunity-slide {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 80px;
-            flex-wrap: wrap;
-        }
-
-        .left-section {
-            flex: 1;
-            min-width: 350px;
-            max-width: 600px;
-        }
-
-        .main-title {
-            font-size: clamp(48px, 6vw, 72px);
-            font-weight: 800;
-            line-height: 1;
-            margin-bottom: 30px;
-            letter-spacing: -2px;
-        }
-
-        .highlight-amount {
-            font-size: clamp(80px, 10vw, 120px);
-            display: block;
-            background: linear-gradient(135deg, #ff0066, #00ffff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin: 20px 0 40px 0;
-        }
-
-        .subtitle {
-            font-size: clamp(24px, 3vw, 36px);
-            color: #ccc;
-            font-weight: 300;
-            margin-bottom: 40px;
-        }
-
-        .investment-terms {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-
-        .term-row {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .term-icon {
-            width: 45px;
-            height: 45px;
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-        }
-
-        .term-text {
-            flex: 1;
-        }
-
-        .term-main {
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 3px;
-        }
-
-        .term-sub {
-            font-size: 14px;
-            color: #999;
-        }
-
-        .progress-bar {
-            background: rgba(255,255,255,0.1);
-            height: 8px;
-            border-radius: 4px;
-            overflow: hidden;
-            margin-bottom: 40px;
-        }
-
-        .progress-fill {
-            height: 100%;
-            width: 10%;
-            background: linear-gradient(90deg, #ff0066, #00ffff);
-            border-radius: 4px;
-        }
-
-        .cta-button {
-            background: linear-gradient(135deg, #ff0066, #00ffff);
-            color: #000;
-            padding: 20px 45px;
-            font-size: 16px;
-            font-weight: 800;
-            border-radius: 100px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: inline-block;
-        }
-
-        .cta-button:hover {
-            transform: scale(1.05);
-            filter: brightness(1.2);
-        }
-
-        .right-section {
-            flex: 1;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 20px;
-            min-width: 350px;
-            max-width: 600px;
-        }
-
-        .thesis-card {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 20px;
-            padding: 30px 20px;
-            text-align: center;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .thesis-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, #00ffff, transparent);
-            transform: translateX(-100%);
-            transition: transform 0.6s ease;
-        }
-
-        .thesis-card:hover {
-            background: rgba(255,255,255,0.06);
-            transform: translateY(-3px);
-            border-color: rgba(0,255,255,0.2);
-        }
-
-        .thesis-card:hover::before {
-            transform: translateX(100%);
-        }
-
-        .thesis-metric {
-            font-size: clamp(32px, 4vw, 48px);
-            font-weight: 800;
-            background: linear-gradient(135deg, #00ffff, #00ff66);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
-            line-height: 1;
-        }
-
-        .thesis-description {
-            font-size: 12px;
-            color: #ccc;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 600;
-            line-height: 1.3;
-        }
-
-        .thesis-card.hero {
-            grid-column: 1 / -1;
-            background: rgba(0,255,255,0.05);
-            border-color: rgba(0,255,255,0.2);
-        }
-
-        .thesis-card.hero .thesis-metric {
-            font-size: clamp(48px, 6vw, 64px);
-        }
-
-        /* Background Elements */
-        .gradient-bg {
-            position: absolute;
-            width: 60%;
-            aspect-ratio: 1;
-            background: radial-gradient(circle, rgba(0,255,255,0.1) 0%, transparent 60%);
-            filter: blur(120px);
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 0;
-        }
-
-        /* Universal elements */
-        .slide-number {
-            position: absolute;
-            top: 40px;
-            right: 40px;
-            font-size: 14px;
-            color: #666;
-            font-weight: 600;
-        }
-
-        .decorative-lines {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 8px;
-            background: linear-gradient(90deg, 
-                #ff0066 0%, 
-                #00ffff 25%, 
-                #ffff00 50%, 
-                #ff00ff 75%, 
-                #ff0066 100%);
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 1200px) {
-            .slide {
-                padding: 30px;
-            }
-            
-            .timeline-point:nth-child(2) { left: 8%; }
-            .timeline-point:nth-child(3) { left: 22%; }
-            .timeline-point:nth-child(4) { left: 36%; }
-            .timeline-point:nth-child(5) { left: 50%; }
-            .timeline-point:nth-child(6) { left: 64%; }
-            .timeline-point:nth-child(7) { left: 78%; }
-            .timeline-point:nth-child(8) { left: 92%; }
-            
-            /* Keep 6 columns on medium screens */
-            .team-grid-main,
-            .highlights-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .slide {
-                padding: 20px;
-            }
-            
-            .proof-grid {
-                flex-direction: column;
-                gap: 30px;
-            }
-            
-            .bottom-metrics {
-                flex-direction: column;
-            }
-            
-            .team-grid-main,
-            .partnerships-grid,
-            .content-grid,
-            .highlights-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .charts-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .opportunity-slide {
-                flex-direction: column;
-                gap: 40px;
-            }
-        }
-    </style>
-</head>
-<body>
-
-<!-- Define the Bridge logo once -->
-<!-- Using the exact filename from GitHub -->
-
-<!-- Slide 1: The Hook - UPDATED -->
-<div class="slide hero-slide">
-    <div class="bridge-logo">
-        <img src="BRIDGE_LOGO_LightBG_AW_@1x[81] (1).png" alt="The Bridge Logo" class="logo-img">
-    </div>
-    <div class="gradient-orb"></div>
-    <div class="hero-content">
-        <div class="hero-metric">The Bridge</div>
-        
-        <div class="proof-grid">
-            <div class="proof-stat">
-                <div class="proof-number">150K+</div>
-                <div class="proof-label">Engaged Followers</div>
-            </div>
-            <div class="proof-stat">
-                <div class="proof-number">10%</div>
-                <div class="proof-label">Monthly Growth Rate</div>
-            </div>
-            <div class="proof-stat">
-                <div class="proof-number">5M+</div>
-                <div class="proof-label">Monthly Content Views</div>
-            </div>
-        </div>
-    </div>
-    <div class="slide-number">1/9</div>
-    <div class="decorative-lines"></div>
-</div>
-
-<!-- Slide 2: The Vision -->
-<div class="slide vision-slide">
-    <div class="bridge-logo">
-        <img src="BRIDGE_LOGO_LightBG_AW_@1x[81] (1).png" alt="The Bridge Logo" class="logo-img">
-    </div>
-    <div class="slide-content">
-        <div class="vision-header">
-            <div class="vision-title">From Proven Concept to Global Scale</div>
-        </div>
-        
-        <div class="timeline-visual">
-            <div class="timeline-line"></div>
-            
-            <div class="timeline-point">
-                <div class="point-circle">✓</div>
-                <div class="point-label">May 2025</div>
-                <div class="point-value">Launched</div>
-            </div>
-            
-            <div class="timeline-point">
-                <div class="point-circle">Q3</div>
-                <div class="point-label">2025</div>
-                <div class="point-value">3 Songs</div>
-            </div>
-            
-            <div class="timeline-point">
-                <div class="point-circle">Q4</div>
-                <div class="point-label">2025</div>
-                <div class="point-value">+4 Songs</div>
-            </div>
-            
-            <div class="timeline-point">
-                <div class="point-circle">Q1</div>
-                <div class="point-label">2026</div>
-                <div class="point-value">Album</div>
-            </div>
-            
-            <div class="timeline-point">
-                <div class="point-circle">Q2</div>
-                <div class="point-label">2026</div>
-                <div class="point-value">Tour</div>
-            </div>
-            
-            <div class="timeline-point">
-                <div class="point-circle">H2</div>
-                <div class="point-label">2027</div>
-                <div class="point-value">West End</div>
-            </div>
-        </div>
-        
-        <div class="bottom-metrics">
-            <div class="metric-block">
-                <div class="metric-title">Launched & Live</div>
-                <div class="metric-value">May 6</div>
-                <div class="metric-detail">Podcast with Bob Geldof, Aurora, Mike Scott already recorded</div>
-            </div>
-            
-            <div class="metric-block">
-                <div class="metric-title">Songs in Production</div>
-                <div class="metric-value">7</div>
-                <div class="metric-detail">Recording with award-winning team</div>
-            </div>
-            
-            <div class="metric-block">
-                <div class="metric-title">Diverse Revenue Streams</div>
-                <div class="metric-value">5</div>
-                <div class="metric-detail">Multiple paths to profitability</div>
-            </div>
-        </div>
-    </div>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: #000;
+    color: #fff;
+    overflow-x: hidden;
+}
+
+/* Base slide - centered container */
+.slide {
+    width: 100%;
+    min-height: 100vh;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 40px;
+    margin-bottom: 50px;
+}
+
+/* Animations */
+@keyframes pulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-50%, -50%) scale(1.1); }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(-50%) translateX(0); }
+    50% { transform: translateY(-50%) translateX(-50px); }
+}
+
+/* Slide 1: The Hook */
+.hero-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-content {
+    text-align: center;
+    z-index: 10;
+    width: 100%;
+    max-width: 1400px;
+}
+
+.hero-metric {
+    font-size: clamp(120px, 15vw, 280px);
+    font-weight: 800;
+    line-height: 1.2;
+    background: linear-gradient(135deg, #ff0066 0%, #00ffff 50%, #ffff00 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 20px;
+    letter-spacing: -5px;
+}
+
+.proof-grid {
+    display: flex;
+    gap: 60px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 80px;
+}
+
+.proof-stat {
+    text-align: center;
+}
+
+.proof-number {
+    font-size: clamp(48px, 5vw, 72px);
+    font-weight: 800;
+    color: #00ffff;
+    margin-bottom: 10px;
+}
+
+.proof-label {
+    font-size: clamp(16px, 2vw, 20px);
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.gradient-orb {
+    position: absolute;
+    width: 50%;
+    aspect-ratio: 1;
+    background: radial-gradient(circle, rgba(255,0,102,0.3) 0%, rgba(0,255,255,0.2) 50%, transparent 70%);
+    filter: blur(100px);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: pulse 8s ease-in-out infinite;
+    z-index: 0;
+}
+
+/* Slide 2: The Vision */
+.vision-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.vision-slide .slide-content {
+    width: 100%;
+    max-width: 1600px;
+    padding: 0 40px;
+}
+
+.vision-header {
+    margin-bottom: 80px;
+    text-align: center;
+}
+
+.vision-title {
+    font-size: clamp(48px, 6vw, 96px);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -3px;
+}
+
+.vision-subtitle {
+    font-size: clamp(24px, 3vw, 32px);
+    font-weight: 300;
+    color: #999;
+}
+
+.timeline-visual {
+    position: relative;
+    height: 280px;
+    margin: 60px 0;
+    padding: 40px 0;
+}
+
+.timeline-line {
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    right: 5%;
+    height: 4px;
+    background: linear-gradient(90deg, #00ff66 0%, #00ffff 20%, #ff0066 40%, #ffff00 60%, #ff00ff 80%, #00ff66 100%);
+    transform: translateY(-50%);
+}
+
+.timeline-point {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.timeline-point:hover {
+    transform: translate(-50%, -60%);
+}
+
+.timeline-point:nth-child(2) { left: 8%; }
+.timeline-point:nth-child(3) { left: 24%; }
+.timeline-point:nth-child(4) { left: 40%; }
+.timeline-point:nth-child(5) { left: 56%; }
+.timeline-point:nth-child(6) { left: 72%; }
+.timeline-point:nth-child(7) { left: 88%; }
+
+.point-circle {
+    width: 90px;
+    height: 90px;
+    background: #000;
+    border: 4px solid #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 800;
+    margin: 0 auto 20px;
+}
+
+.point-label {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    white-space: nowrap;
+}
+
+.point-value {
+    font-size: 20px;
+    font-weight: 800;
+    color: #00ffff;
+    white-space: nowrap;
+}
+
+.bottom-metrics {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.metric-block {
+    flex: 1;
+    min-width: 250px;
+    padding: 30px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 24px;
+    backdrop-filter: blur(10px);
+}
+
+.metric-title {
+    font-size: 16px;
+    color: #999;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.metric-value {
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.metric-detail {
+    font-size: 14px;
+    color: #ccc;
+    line-height: 1.5;
+}
+
+/* Slide 3: Team - UPDATED FOR SINGLE ROW */
+.team-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.team-slide .slide-content {
+    width: 100%;
+    max-width: 1600px;
+}
+
+.team-header {
+    margin-bottom: 80px;
+    text-align: center;
+}
+
+.team-title {
+    font-size: clamp(40px, 5vw, 72px);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -2px;
+    background: linear-gradient(135deg, #fff 0%, #00ffff 50%, #fff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.team-subtitle {
+    font-size: clamp(20px, 2.5vw, 28px);
+    color: #999;
+    font-weight: 300;
+}
+
+/* Force 6 columns in one row */
+.team-grid-main {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 20px;
+}
+
+.team-member-card {
+    background: rgba(255,255,255,0.05);
+    border: 2px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.team-member-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(0,255,255,0.3);
+}
+
+.team-member-card.featured {
+    background: rgba(255,0,102,0.1);
+    border-color: rgba(255,0,102,0.3);
+}
+
+.image-placeholder {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #ff0066, #00ffff);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: 800;
+    color: #000;
+    margin-bottom: 15px;
+}
+
+.member-name {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.member-role {
+    font-size: 14px;
+    color: #00ffff;
+    margin-bottom: 12px;
+}
+
+.member-achievement {
+    font-size: 11px;
+    color: #999;
+    line-height: 1.3;
+}
+
+/* Slide 4: Partnerships */
+.partnerships-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.partnerships-slide .slide-content {
+    width: 100%;
+    max-width: 1600px;
+}
+
+.partnerships-header {
+    margin-bottom: 80px;
+    text-align: center;
+}
+
+.partnerships-title {
+    font-size: clamp(40px, 5vw, 72px);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -2px;
+}
+
+.partnerships-subtitle {
+    font-size: clamp(20px, 2.5vw, 28px);
+    color: #999;
+    font-weight: 300;
+}
+
+.partnerships-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+}
+
+.partnership-category {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.category-title {
+    font-size: 22px;
+    font-weight: 600;
+    color: #00ffff;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.partner-card {
+    background: rgba(255,255,255,0.05);
+    border: 2px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    padding: 25px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.partner-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(0,255,255,0.3);
+}
+
+.partner-card.major {
+    background: rgba(0,255,255,0.1);
+    border-color: rgba(0,255,255,0.3);
+}
+
+.partner-logo {
+    font-size: 18px;
+    font-weight: 800;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.partner-detail {
+    font-size: 13px;
+    color: #999;
+}
+
+/* Slide 5: Financial Highlights - NEW STYLE WITH GREY BOXES */
+.financial-highlights-slide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
+.financial-highlights-slide .gradient-orb {
+    width: 60%;
+    aspect-ratio: 1;
+    background: radial-gradient(circle, rgba(255,0,102,0.2) 0%, rgba(0,255,255,0.1) 50%, transparent 70%);
+    filter: blur(100px);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+}
+
+.financial-highlights-slide .slide-title {
+    font-size: clamp(48px, 6vw, 72px);
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -3px;
+    background: linear-gradient(135deg, #fff 0%, #00ffff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+    margin-bottom: 80px;
+    padding-bottom: 10px;
+    z-index: 1;
+}
+
+.financial-content-wrapper {
+    display: flex;
+    gap: 30px;
+    max-width: 1600px;
+    margin: 0 auto;
+    width: 100%;
+    z-index: 1;
+    position: relative;
+}
+
+.financial-left-column {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    flex: 1;
+}
+
+.financial-right-column {
+    flex: 1;
+}
+
+.financial-metric-box {
+    background: rgba(30, 30, 30, 0.9);
+    border: 1px solid rgba(60, 60, 60, 0.5);
+    border-radius: 20px;
+    padding: 35px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.financial-box-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #00ffff;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 30px;
+}
+
+/* Use of Funds Section */
+.use-of-funds-content {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    flex: 1;
+}
+
+.donut-wrapper {
+    position: relative;
+    width: 180px;
+    height: 180px;
+    flex-shrink: 0;
+}
+
+.donut-chart {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+.donut-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    height: 60%;
+    background: #000;
+    border-radius: 50%;
+}
+
+.funds-legend {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex: 1;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.legend-color {
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+    flex-shrink: 0;
+}
+
+.legend-text {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+}
+
+.legend-label {
+    font-size: 15px;
+    color: #fff;
+    font-weight: 500;
+}
+
+.legend-value {
+    font-size: 18px;
+    font-weight: 700;
+    color: #00ff66;
+    margin-left: auto;
+}
+
+/* Unit Economics */
+.unit-economics-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    flex: 1;
+}
+
+.unit-item {
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(80, 80, 80, 0.3);
+    border-radius: 12px;
+    padding: 25px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.unit-value {
+    font-size: 36px;
+    font-weight: 800;
+    color: #00ff66;
+    margin-bottom: 8px;
+    line-height: 1;
+}
+
+.unit-label {
+    font-size: 13px;
+    color: #999;
+    line-height: 1.4;
+}
+
+/* Growth Trajectory Section */
+.growth-content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    flex: 1;
+}
+
+/* Timeline visualization */
+.timeline-section {
+    flex: 1;
+}
+
+.financial-timeline-visual {
+    position: relative;
+    height: 100px;
+    margin: 20px 0;
+}
+
+.financial-timeline-line {
+    position: absolute;
+    top: 35px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #444 0%, #0066ff 33%, #00aaff 66%, #00ff66 100%);
+}
+
+.financial-timeline-points {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.financial-timeline-point {
+    position: relative;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.financial-point-circle {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: #000;
+    border: 3px solid #444;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.financial-timeline-point:nth-child(2) .financial-point-circle {
+    border-color: #0066ff;
+}
+
+.financial-timeline-point:nth-child(3) .financial-point-circle {
+    border-color: #00aaff;
+}
+
+.financial-timeline-point:nth-child(4) .financial-point-circle {
+    border-color: #00ff66;
+}
+
+.financial-point-label {
+    font-size: 11px;
+    color: #666;
+    margin-bottom: 2px;
+}
+
+.financial-point-growth {
+    font-size: 13px;
+    color: #00ff66;
+    font-weight: 600;
+}
+
+.financial-timeline-label {
+    text-align: center;
+    font-size: 12px;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 10px;
+}
+
+/* Metrics Grid */
+.metrics-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+.metric-section {
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(80, 80, 80, 0.3);
+    border-radius: 12px;
+    padding: 25px;
+}
+
+.section-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+
+/* Milestones */
+.milestones {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.milestone {
+    text-align: center;
+    flex: 1;
+}
+
+.milestone-icon {
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.milestone-value {
+    font-size: 20px;
+    font-weight: 700;
+    color: #ff0066;
+    margin-bottom: 4px;
+}
+
+.milestone-label {
+    font-size: 10px;
+    color: #666;
+    text-transform: uppercase;
+}
+
+/* Projections */
+.projections {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.projection-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.projection-label {
+    font-size: 13px;
+    color: #999;
+}
+
+.projection-value {
+    font-size: 22px;
+    font-weight: 700;
+    color: #00ff66;
+}
+
+.cagr-highlight {
+    background: rgba(0, 255, 102, 0.1);
+    border: 1px solid rgba(0, 255, 102, 0.3);
+    border-radius: 8px;
+    padding: 12px;
+    margin-top: 5px;
+}
+
+/* Cash Flow Timeline */
+.cashflow-section {
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(80, 80, 80, 0.3);
+    border-radius: 12px;
+    padding: 25px;
+    margin-top: 25px;
+}
+
+.cashflow-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.cashflow-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.cashflow-target {
+    font-size: 20px;
+    font-weight: 700;
+    color: #00ff66;
+    background: rgba(0, 255, 102, 0.1);
+    padding: 4px 12px;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 255, 102, 0.3);
+}
+
+.cashflow-bar {
+    height: 30px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.cashflow-progress {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 83%;
+    background: linear-gradient(90deg, #ff0066 0%, #0066ff 50%, #00ff66 83%);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0 20px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #000;
+}
+
+.cashflow-metrics {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+}
+
+.cashflow-metric span:first-child {
+    color: #666;
+}
+
+.cashflow-metric span:last-child {
+    font-weight: 600;
+    margin-left: 5px;
+}
+
+.burn-rate {
+    color: #ff0066;
+}
+
+.break-even {
+    color: #00ff66;
+}
+
+/* Keep original slide 5 styling as comments for reference */
+/*
+.highlights-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 20px;
+    margin-top: 60px;
+}
+
+.highlight-card {
+    background: rgba(255,255,255,0.03);
+    border: 2px solid rgba(255,255,255,0.1);
+    border-radius: 24px;
+    padding: 25px 15px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+*/
+
+/* Slide 6: Financial Projections */
+.financial-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.financial-slide .slide-content {
+    width: 100%;
+    max-width: 1600px;
+}
+
+.slide-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.slide-title {
+    font-size: clamp(48px, 6vw, 96px);
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    letter-spacing: -3px;
+    background: linear-gradient(135deg, #fff 0%, #00ffff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.charts-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 60px;
+}
+
+.chart-wrapper,
+.revenue-mix-chart {
+    background: rgba(255,255,255,0.05);
+    border-radius: 32px;
+    padding: 40px;
+    min-height: 500px;
+}
+
+.chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.chart-title {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.chart-legend {
+    display: flex;
+    gap: 20px;
+    font-size: 13px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.legend-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.chart-area {
+    height: 350px;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    padding: 0 20px;
+}
+
+.year-bar {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    max-width: 120px;
+}
+
+.revenue-bar {
+    width: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    font-weight: 700;
+    font-size: 16px;
+    border-radius: 8px 8px 0 0;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+.revenue-bar:hover {
+    transform: scaleY(1.05);
+    filter: brightness(1.2);
+}
+
+.year-label {
+    font-size: 16px;
+    font-weight: 600;
+    color: #999;
+}
+
+.revenue-years {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.year-column {
+    text-align: center;
+}
+
+.mix-year-label {
+    font-size: 16px;
+    font-weight: 600;
+    color: #999;
+    margin-bottom: 15px;
+}
+
+.revenue-total {
+    font-size: 24px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #00ff66, #00ffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 15px;
+}
+
+.revenue-breakdown {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    height: 200px;
+}
+
+.revenue-segment {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    font-weight: 600;
+    font-size: 12px;
+    transition: all 0.3s ease;
+}
+
+.segment-musical { background: linear-gradient(135deg, #ff0066, #ff3399); }
+.segment-songs { background: linear-gradient(135deg, #0066ff, #0099ff); }
+.segment-events { background: linear-gradient(135deg, #00ff66, #00ffaa); }
+.segment-merch { background: linear-gradient(135deg, #ffaa00, #ffcc00); }
+.segment-podcast { background: linear-gradient(135deg, #aa00ff, #cc00ff); }
+
+.revenue-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 30px;
+    justify-content: center;
+    font-size: 11px;
+}
+
+.mix-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.mix-legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 3px;
+}
+
+/* Slide 7: Roadmap */
+.roadmap-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.roadmap-container {
+    width: 100%;
+    max-width: 1800px;
+    background: #000;
+    border-radius: 24px;
+    overflow: hidden;
+    border: 2px solid rgba(255,255,255,0.1);
+}
+
+.roadmap-header {
+    background: linear-gradient(135deg, rgba(255,0,102,0.2) 0%, rgba(0,255,255,0.2) 100%);
+    padding: 30px;
+    text-align: center;
+    position: relative;
+}
+
+.roadmap-header::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #ff0066, #00ffff, #ffff00, #ff00ff);
+}
+
+.roadmap-title {
+    font-size: clamp(28px, 3.5vw, 42px);
+    font-weight: 800;
+    letter-spacing: -2px;
+    background: linear-gradient(135deg, #fff, #00ffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.roadmap-subtitle {
+    font-size: 16px;
+    color: #ccc;
+    font-weight: 300;
+}
+
+.timeline-months {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    background: rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.month {
+    padding: 15px 5px;
+    text-align: center;
+    border-right: 1px solid rgba(255,255,255,0.1);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 12px;
+}
+
+.month.current {
+    background: rgba(0,255,255,0.1);
+    color: #00ffff;
+}
+
+.roadmap-body {
+    padding: 30px;
+}
+
+.roadmap-category {
+    margin-bottom: 30px;
+}
+
+.category-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #00ffff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.task-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 20px;
+}
+
+.task-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: #ddd;
+}
+
+.task-timeline {
+    position: relative;
+    height: 28px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.task-bar {
+    position: absolute;
+    height: 100%;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    font-size: 11px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.task-bar:hover {
+    transform: scaleY(1.1);
+    filter: brightness(1.2);
+}
+
+.task-bar.completed { background: linear-gradient(135deg, #00ff66, #00ffaa); color: #000; }
+.task-bar.critical { background: linear-gradient(135deg, #ff0066, #ff3366); }
+.task-bar.major { background: linear-gradient(135deg, #0066ff, #00aaff); }
+.task-bar.supporting { background: linear-gradient(135deg, #ffaa00, #ffcc00); color: #000; }
+.task-bar.ongoing {
+    background: repeating-linear-gradient(
+        45deg,
+        rgba(255,255,255,0.1),
+        rgba(255,255,255,0.1) 8px,
+        rgba(255,255,255,0.2) 8px,
+        rgba(255,255,255,0.2) 16px
+    );
+    border: 1px dotted rgba(255,255,255,0.3);
+}
+
+.roadmap-legend {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    flex-wrap: wrap;
+}
+
+.roadmap-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.roadmap-legend-color {
+    width: 20px;
+    height: 12px;
+    border-radius: 6px;
+}
+
+.roadmap-legend-label {
+    font-size: 11px;
+    color: #999;
+}
+
+/* Slide 8: Investment Case */
+.investment-case-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.investment-case-slide .slide-content {
+    width: 100%;
+    max-width: 1400px;
+}
+
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+}
+
+.proof-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 24px;
+    padding: 35px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.proof-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, #00ffff, transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.proof-card:hover {
+    background: rgba(255,255,255,0.06);
+    transform: translateY(-3px);
+    border-color: rgba(0,255,255,0.2);
+}
+
+.proof-card:hover::before {
+    opacity: 1;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.card-icon {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #ff0066, #00ffff);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 800;
+    color: #000;
+}
+
+.card-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.proof-points {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.proof-item {
+    padding-left: 20px;
+    position: relative;
+}
+
+.proof-item::before {
+    content: '?';
+    position: absolute;
+    left: 0;
+    top: 2px;
+    color: #00ff66;
+    font-size: 16px;
+}
+
+.proof-text {
+    font-size: 15px;
+    line-height: 1.5;
+    color: #ddd;
+}
+
+.proof-text strong {
+    color: #fff;
+    font-weight: 600;
+}
+
+/* Slide 9: Investment Opportunity */
+.opportunity-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 80px;
+    flex-wrap: wrap;
+}
+
+.left-section {
+    flex: 1;
+    min-width: 350px;
+    max-width: 600px;
+}
+
+.main-title {
+    font-size: clamp(48px, 6vw, 72px);
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 30px;
+    letter-spacing: -2px;
+}
+
+.highlight-amount {
+    font-size: clamp(80px, 10vw, 120px);
+    display: block;
+    background: linear-gradient(135deg, #ff0066, #00ffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 20px 0 40px 0;
+}
+
+.subtitle {
+    font-size: clamp(24px, 3vw, 36px);
+    color: #ccc;
+    font-weight: 300;
+    margin-bottom: 40px;
+}
+
+.investment-terms {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.term-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.term-icon {
+    width: 45px;
+    height: 45px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.term-text {
+    flex: 1;
+}
+
+.term-main {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 3px;
+}
+
+.term-sub {
+    font-size: 14px;
+    color: #999;
+}
+
+.progress-bar {
+    background: rgba(255,255,255,0.1);
+    height: 8px;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 40px;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 31%;
+    background: linear-gradient(90deg, #ff0066, #00ffff);
+    border-radius: 4px;
+}
+
+.cta-button {
+    background: linear-gradient(135deg, #ff0066, #00ffff);
+    color: #000;
+    padding: 20px 45px;
+    font-size: 16px;
+    font-weight: 800;
+    border-radius: 100px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.cta-button:hover {
+    transform: scale(1.05);
+    filter: brightness(1.2);
+}
+
+.right-section {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    min-width: 350px;
+    max-width: 600px;
+}
+
+.thesis-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 30px 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.thesis-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #00ffff, transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
+
+.thesis-card:hover {
+    background: rgba(255,255,255,0.06);
+    transform: translateY(-3px);
+    border-color: rgba(0,255,255,0.2);
+}
+
+.thesis-card:hover::before {
+    transform: translateX(100%);
+}
+
+.thesis-metric {
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 800;
+    background: linear-gradient(135deg, #00ffff, #00ff66);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 10px;
+    line-height: 1;
+}
+
+.thesis-description {
+    font-size: 12px;
+    color: #ccc;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.thesis-card.hero {
+    grid-column: 1 / -1;
+    background: rgba(0,255,255,0.05);
+    border-color: rgba(0,255,255,0.2);
+}
+
+.thesis-card.hero .thesis-metric {
+    font-size: clamp(36px, 5vw, 48px);
+}
+
+.thesis-card.hero .thesis-description {
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+/* Background Elements */
+.gradient-bg {
+    position: absolute;
+    width: 60%;
+    aspect-ratio: 1;
+    background: radial-gradient(circle, rgba(0,255,255,0.1) 0%, transparent 60%);
+    filter: blur(120px);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+}
+
+/* Universal elements */
+.slide-number {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    font-size: 14px;
+    color: #666;
+    font-weight: 600;
+}
+
+.brand-mark {
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: 4px;
+    opacity: 0.3;
+}
+
+.decorative-lines {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background: linear-gradient(90deg, 
+        #ff0066 0%, 
+        #00ffff 25%, 
+        #ffff00 50%, 
+        #ff00ff 75%, 
+        #ff0066 100%);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .slide {
+        padding: 30px;
+    }
     
-    <div class="slide-number">2/9</div>
-    <div class="decorative-lines"></div>
-</div>
-
-<!-- Slide 3: The Team -->
-<div class="slide team-slide">
-    <div class="bridge-logo">
-        <img src="BRIDGE_LOGO_LightBG_AW_@1x[81] (1).png" alt="The Bridge Logo" class="logo-img">
-    </div>
-    <div class="slide-content">
-        <div class="team-header">
-            <div class="team-title">Grammy Winners. West End Legends. Peace Builders.</div>
-        </div>
-        
-        <div class="team-grid-main">
-            <div class="team-member-card featured">
-                <div class="image-placeholder">SB</div>
-                <div class="member-name">Stephen Byrne</div>
-                <div class="member-role">Founder & CEO</div>
-                <div class="member-achievement">3 Successful Exits • Peace Activist • 20+ Years Building Bridges</div>
-            </div>
-            
-            <div class="team-member-card featured">
-                <div class="image-placeholder">AL</div>
-                <div class="member-name">Alan Lane</div>
-                <div class="member-role">Artistic Director</div>
-                <div class="member-achievement">Royal Edinburgh Military Tattoo • RSC, Barbican, Almeida</div>
-            </div>
-            
-            <div class="team-member-card">
-                <div class="image-placeholder">JP</div>
-                <div class="member-name">James Phillips</div>
-                <div class="member-role">Writer</div>
-                <div class="member-achievement">TMA Award Best Play • West End Success "McQueen"</div>
-            </div>
-            
-            <div class="team-member-card">
-                <div class="image-placeholder">MA</div>
-                <div class="member-name">Marla Altschuler</div>
-                <div class="member-role">Lead Songwriter</div>
-                <div class="member-achievement">Warner Chappell Artist • #1 Albums • Global Sync Placements</div>
-            </div>
-            
-            <div class="team-member-card">
-                <div class="image-placeholder">SA</div>
-                <div class="member-name">Steve Anderson</div>
-                <div class="member-role">Music Producer</div>
-                <div class="member-achievement">Kylie, Westlife, Steps • Brothers in Rhythm</div>
-            </div>
-            
-            <div class="team-member-card">
-                <div class="image-placeholder">SM</div>
-                <div class="member-name">Scott Millaney</div>
-                <div class="member-role">Producer</div>
-                <div class="member-achievement">Multi-Grammy Winner • Pink Floyd, Adele, Coldplay Documentaries</div>
-            </div>
-        </div>
-    </div>
+    .timeline-point:nth-child(2) { left: 8%; }
+    .timeline-point:nth-child(3) { left: 22%; }
+    .timeline-point:nth-child(4) { left: 36%; }
+    .timeline-point:nth-child(5) { left: 50%; }
+    .timeline-point:nth-child(6) { left: 64%; }
+    .timeline-point:nth-child(7) { left: 78%; }
+    .timeline-point:nth-child(8) { left: 92%; }
     
-    <div class="slide-number">3/9</div>
-    <div class="decorative-lines"></div>
-</div>
-
-<!-- Slide 4: Strategic Partnerships -->
-<div class="slide partnerships-slide">
-    <div class="bridge-logo">
-        <img src="BRIDGE_LOGO_LightBG_AW_@1x[81] (1).png" alt="The Bridge Logo" class="logo-img">
-    </div>
-    <div class="slide-content">
-        <div class="partnerships-header">
-            <div class="partnerships-title">Backed by Industry Giants</div>
-        </div>
-        
-        <div class="partnerships-grid">
-            <div class="partnership-category">
-                <div class="category-title">Distribution & Publishing</div>
-                <div class="partner-card major">
-                    <div class="partner-logo">YOUTUBE</div>
-                    <div class="partner-detail">Primary Video monetization channel</div>
-                </div>
-                <div class="partner-card">
-                    <div class="partner-logo">SPOTIFY</div>
-                    <div class="partner-detail">Primary Audio monetization channel</div>
-                </div>
-                <div class="partner-card">
-                    <div class="partner-logo">APPLE MUSIC</div>
-                    <div class="partner-detail">Playlist & streaming partner</div>
-                </div>
-            </div>
-            
-            <div class="partnership-category">
-                <div class="category-title">Venues & Production</div>
-                <div class="partner-card major">
-                    <div class="partner-logo">OUTERNET LONDON</div>
-                    <div class="partner-detail">2,000 capacity venue secured</div>
-                </div>
-                <div class="partner-card">
-                    <div class="partner-logo">FUEL HQ DUBLIN</div>
-                    <div class="partner-detail">Live events trial venue</div>
-                </div>
-                <div class="partner-card">
-                    <div class="partner-logo">WEST END NETWORK</div>
-                    <div class="partner-detail">Established theatre relationships</div>
-                </div>
-            </div>
-            
-            <div class="partnership-category">
-                <div class="category-title">Peace & Impact</div>
-                <div class="partner-card">
-                    <div class="partner-logo">UNITED NATIONS</div>
-                    <div class="partner-detail">Alliance of Civilizations</div>
-                </div>
-                <div class="partner-card">
-                    <div class="partner-logo">SABREEN</div>
-                    <div class="partner-detail">Palestine music partner</div>
-                </div>
-                <div class="partner-card">
-                    <div class="partner-logo">SULHA</div>
-                    <div class="partner-detail">Israel peace initiative</div>
-                </div>
-            </div>
-        </div>
-    </div>
+    /* Responsive grid adjustments */
+    .team-grid-main {
+        grid-template-columns: repeat(3, 1fr);
+    }
     
-    <div class="slide-number">4/9</div>
-    <div class="decorative-lines"></div>
-</div>
+    .financial-content-wrapper {
+        flex-direction: column;
+    }
+}
 
-<!-- Slide 5: Financial Highlights - UPDATED -->
-<div class="slide financial-highlights-slide">
-    <div class="bridge-logo">
-        <img src="BRIDGE_LOGO_LightBG_AW_@1x[81] (1).png" alt="The Bridge Logo" class="logo-img">
-    </div>
-    <div class="gradient-orb"></div>
-
-    <h1 class="slide-title">Financial Highlights</h1>
-
-    <div class="financial-content-wrapper">
-        <!-- Left Column -->
-        <div class="financial-left-column">
-            <!-- Use of Funds - UPDATED -->
-            <div class="financial-metric-box">
-                <h3 class="financial-box-title">Use of Funds</h3>
-                <div class="use-of-funds-content">
-                    <div class="donut-wrapper">
-                        <svg class="donut-chart" viewBox="0 0 100 100">
-                            <!-- Content & Production 50% -->
-                            <circle cx="50" cy="50" r="40" fill="none" stroke="#ff0066" stroke-width="20" 
-                                    stroke-dasharray="62.8 62.8" stroke-dashoffset="0"/>
-                            <!-- Team 30% -->
-                            <circle cx="50" cy="50" r="40" fill="none" stroke="#0066ff" stroke-width="20" 
-                                    stroke-dasharray="37.7 87.9" stroke-dashoffset="-62.8"/>
-                            <!-- Marketing 15% -->
-                            <circle cx="50" cy="50" r="40" fill="none" stroke="#00ff66" stroke-width="20" 
-                                    stroke-dasharray="18.84 106.76" stroke-dashoffset="-100.5"/>
-                            <!-- Operations 5% -->
-                            <circle cx="50" cy="50" r="40" fill="none" stroke="#ffaa00" stroke-width="20" 
-                                    stroke-dasharray="6.28 119.32" stroke-dashoffset="-119.34"/>
-                        </svg>
-                        <div class="donut-center"></div>
-                    </div>
-                    <div class="funds-legend">
-                        <div class="legend-item">
-                            <div class="legend-color" style="background: #ff0066;"></div>
-                            <div class="legend-text">
-                                <span class="legend-label">Content & Production</span>
-                                <span class="legend-value">50%</span>
-                            </div>
-                        </div>
-                        <div class="legend-item">
-                            <div class="legend-color" style="background: #0066ff;"></div>
-                            <div class="legend-text">
-                                <span class="legend-label">Team</span>
-                                <span class="legend-value">30%</span>
-                            </div>
-                        </div>
-                        <div class="legend-item">
-                            <div class="legend-color" style="background: #00ff66;"></div>
-                            <div class="legend-text">
-                                <span class="legend-label">Marketing</span>
-                                <span class="legend-value">15%</span>
-                            </div>
-                        </div>
-                        <div class="legend-item">
-                            <div class="legend-color" style="background: #ffaa00;"></div>
-                            <div class="legend-text">
-                                <span class="legend-label">Operations</span>
-                                <span class="legend-value">5%</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Unit Economics - UPDATED -->
-            <div class="financial-metric-box">
-                <h3 class="financial-box-title">Unit Economics</h3>
-                <div class="unit-economics-content">
-                    <div class="unit-item">
-                        <div class="unit-value">£10K</div>
-                        <div class="unit-label">Per song production cost</div>
-                    </div>
-                    <div class="unit-item">
-                        <div class="unit-value">£25K</div>
-                        <div class="unit-label">Revenue per song (Year 1)</div>
-                    </div>
-                    <div class="unit-item">
-                        <div class="unit-value">£2.5K</div>
-                        <div class="unit-label">Per podcast episode cost</div>
-                    </div>
-                    <div class="unit-item">
-                        <div class="unit-value">£5K</div>
-                        <div class="unit-label">Avg sponsor per episode</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Right Column -->
-        <div class="financial-right-column">
-            <div class="financial-metric-box">
-                <h3 class="financial-box-title">Growth Trajectory & Targets</h3>
-                <div class="growth-content">
-                    <!-- Timeline -->
-                    <div class="timeline-section">
-                        <div class="financial-timeline-visual">
-                            <div class="financial-timeline-line"></div>
-                            <div class="financial-timeline-points">
-                                <div class="financial-timeline-point">
-                                    <div class="financial-point-circle">£8K</div>
-                                    <div class="financial-point-label">Current</div>
-                                </div>
-                                <div class="financial-timeline-point">
-                                    <div class="financial-point-circle">£25K</div>
-                                    <div class="financial-point-label">Month 6</div>
-                                    <div class="financial-point-growth">+213%</div>
-                                </div>
-                                <div class="financial-timeline-point">
-                                    <div class="financial-point-circle">£50K</div>
-                                    <div class="financial-point-label">Month 12</div>
-                                    <div class="financial-point-growth">+100%</div>
-                                </div>
-                                <div class="financial-timeline-point">
-                                    <div class="financial-point-circle">£75K</div>
-                                    <div class="financial-point-label">Month 18</div>
-                                    <div class="financial-point-growth">+50%</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="financial-timeline-label">Monthly Recurring Revenue Growth</div>
-                    </div>
-
-                    <!-- Metrics Grid -->
-                    <div class="metrics-grid">
-                        <div class="metric-section">
-                            <div class="section-title">18-Month Milestones</div>
-                            <div class="milestones">
-                                <div class="milestone">
-                                    <div class="milestone-icon">🎵</div>
-                                    <div class="milestone-value">10M+</div>
-                                    <div class="milestone-label">Streams</div>
-                                </div>
-                                <div class="milestone">
-                                    <div class="milestone-icon">🎭</div>
-                                    <div class="milestone-value">£500K</div>
-                                    <div class="milestone-label">Pre-Sales</div>
-                                </div>
-                                <div class="milestone">
-                                    <div class="milestone-icon">👥</div>
-                                    <div class="milestone-value">1M+</div>
-                                    <div class="milestone-label">Reach</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="metric-section">
-                            <div class="section-title">Year 3 Projections</div>
-                            <div class="projections">
-                                <div class="projection-item">
-                                    <span class="projection-label">Revenue</span>
-                                    <span class="projection-value">£9.2M</span>
-                                </div>
-                                <div class="projection-item">
-                                    <span class="projection-label">EBITDA</span>
-                                    <span class="projection-value">£3.8M</span>
-                                </div>
-                                <div class="projection-item cagr-highlight">
-                                    <span class="projection-label">3-Year CAGR</span>
-                                    <span class="projection-value">331%</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Cash Flow Timeline -->
-                    <div class="cashflow-section">
-                        <div class="cashflow-header">
-                            <span class="cashflow-title">Path to Cash Flow Positive</span>
-                            <span class="cashflow-target">Month 20</span>
-                        </div>
-                        <div class="cashflow-bar">
-                            <div class="cashflow-progress">
-                                <span>Investment Period</span>
-                                <span>Revenue Growth</span>
-                                <span>CF+</span>
-                            </div>
-                        </div>
-                        <div class="cashflow-metrics">
-                            <div class="cashflow-metric">
-                                <span>Current Burn:</span>
-                                <span class="burn-rate">-£10K/mo</span>
-                            </div>
-                            <div class="cashflow-metric">
-                                <span>Break-even:</span>
-                                <span class="break-even">Month 20</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="slide-number">5/9</div>
-    <div class="decorative-lines"></div>
-</div>
-
-<!-- Slide 6: Financial Projections -->
-<div class="slide financial-slide">
-    <div class="bridge-logo">
-        <img src="BRIDGE_LOGO_LightBG_AW_@1x[81] (1).png" alt="The Bridge Logo" class="logo-img">
-    </div>
-    <div class="gradient-bg"></div>
+@media (max-width: 768px) {
+    .slide {
+        padding: 20px;
+    }
     
-    <div class="slide-content">
-        <div class="slide-header">
-            <h1 class="slide-title">Financial Projections</h1>
-        </div>
-        
-        <div class="charts-container">
-            <!-- Revenue Trajectory -->
-            <div class="chart-wrapper">
-                <div class="chart-header">
-                    <div class="chart-title">Revenue Trajectory</div>
-                    <div class="chart-legend">
-                        <div class="legend-item">
-                            <div class="legend-dot" style="background: #00ffff;"></div>
-                            <span>Revenue</span>
-                        </div>
-                        <div class="legend-item">
-                            <div class="legend-dot" style="background: #00ff66;"></div>
-                            <span>Profit</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="chart-area">
-                    <div class="year-bar">
-                        <div class="revenue-bar" style="height: 30px; background: linear-gradient(135deg, #0066ff, #00ffff);">
-                            £115K
-                        </div>
-                        <div class="year-label">2025</div>
-                    </div>
-                    
-                    <div class="year-bar">
-                        <div class="revenue-bar" style="height: 100px; background: linear-gradient(135deg, #0099ff, #00ffff);">
-                            £1.2M
-                        </div>
-                        <div class="year-label">2026<br><span style="font-size: 11px; color: #666;">(10X)</span></div>
-                    </div>
-                    
-                    <div class="year-bar">
-                        <div class="revenue-bar" style="height: 300px; background: linear-gradient(135deg, #00ccff, #00ff66);">
-                            £9.2M
-                        </div>
-                        <div class="year-label">2027<br><span style="font-size: 11px; color: #666;">(80X)</span></div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Revenue Mix Evolution -->
-            <div class="revenue-mix-chart">
-                <h3 class="chart-title">Revenue Mix Evolution</h3>
-                
-                <div class="revenue-years">
-                    <div class="year-column">
-                        <div class="mix-year-label">YEAR 1</div>
-                        <div class="revenue-total">£115K</div>
-                        <div class="revenue-breakdown">
-                            <div class="revenue-segment segment-songs" style="flex: 0.22;">22%</div>
-                            <div class="revenue-segment segment-events" style="flex: 0.43;">43%</div>
-                            <div class="revenue-segment segment-merch" style="flex: 0.17;">17%</div>
-                            <div class="revenue-segment segment-podcast" style="flex: 0.18;">18%</div>
-                        </div>
-                    </div>
-                    
-                    <div class="year-column">
-                        <div class="mix-year-label">YEAR 2</div>
-                        <div class="revenue-total">£1.2M</div>
-                        <div class="revenue-breakdown">
-                            <div class="revenue-segment segment-musical" style="flex: 0.45;">45%</div>
-                            <div class="revenue-segment segment-songs" style="flex: 0.21;">21%</div>
-                            <div class="revenue-segment segment-events" style="flex: 0.17;">17%</div>
-                            <div class="revenue-segment segment-merch" style="flex: 0.09;">9%</div>
-                            <div class="revenue-segment segment-podcast" style="flex: 0.08;">8%</div>
-                        </div>
-                    </div>
-                    
-                    <div class="year-column">
-                        <div class="mix-year-label">YEAR 3</div>
-                        <div class="revenue-total">£9.2M</div>
-                        <div class="revenue-breakdown">
-                            <div class="revenue-segment segment-musical" style="flex: 0.54;">54%</div>
-                            <div class="revenue-segment segment-songs" style="flex: 0.27;">27%</div>
-                            <div class="revenue-segment segment-events" style="flex: 0.11;">11%</div>
-                            <div class="revenue-segment segment-merch" style="flex: 0.06;">6%</div>
-                            <div class="revenue-segment segment-podcast" style="flex: 0.02;">2%</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="revenue-legend">
-                    <div class="mix-legend-item">
-                        <div class="mix-legend-dot segment-musical"></div>
-                        <span>Musical</span>
-                    </div>
-                    <div class="mix-legend-item">
-                        <div class="mix-legend-dot segment-songs"></div>
-                        <span>Songs & Music</span>
-                    </div>
-                    <div class="mix-legend-item">
-                        <div class="mix-legend-dot segment-events"></div>
-                        <span>Live Events</span>
-                    </div>
-                    <div class="mix-legend-item">
-                        <div class="mix-legend-dot segment-merch"></div>
-                        <span>Merchandise</span>
-                    </div>
-                    <div class="mix-legend-item">
-                        <div class="mix-legend-dot segment-podcast"></div>
-                        <span>Podcasts</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    .proof-grid {
+        flex-direction: column;
+        gap: 30px;
+    }
     
-    <div class="slide-number">6/9</div>
-    <div class="decorative-lines"></div>
-</div>
-
-<!-- Slide 7: Launch Roadmap - UPDATED -->
-<div class="slide roadmap-slide">
-    <div class="bridge-logo">
-        <img src="BRIDGE_LOGO_LightBG_AW_@1x[81] (1).png" alt="The Bridge Logo" class="logo-img">
-    </div>
-    <div class="roadmap-container">
-        <div class="roadmap-header">
-            <h1 class="roadmap-title">THE BRIDGE: LAUNCH ROADMAP</h1>
-        </div>
-        
-        <div class="timeline-months">
-            <div class="month current">MAY 2025</div>
-            <div class="month">JUN 2025</div>
-            <div class="month">JUL 2025</div>
-            <div class="month">AUG 2025</div>
-            <div class="month">SEP 2025</div>
-            <div class="month">OCT 2025</div>
-            <div class="month">NOV-APR</div>
-        </div>
-        
-        <div class="roadmap-body">
-            <!-- Core Priorities -->
-            <div class="roadmap-category">
-                <h2 class="category-title">Core Priorities</h2>
-                
-                <div class="task-row">
-                    <div class="task-name">Investment Close</div>
-                    <div class="task-timeline">
-                        <div class="task-bar critical" style="left: 0; width: 42.9%;">
-                            <span>£450K by July 31</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="task-row">
-                    <div class="task-name">SEIS/EIS Setup</div>
-                    <div class="task-timeline">
-                        <div class="task-bar supporting" style="left: 0; width: 14.3%;">
-                            <span>Complete June</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="task-row">
-                    <div class="task-name">Core Team Hire</div>
-                    <div class="task-timeline">
-                        <div class="task-bar critical" style="left: 14.3%; width: 28.6%;">
-                            <span>Part-time COO/CCO</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Production -->
-            <div class="roadmap-category">
-                <h2 class="category-title">Production</h2>
-                
-                <div class="task-row">
-                    <div class="task-name">Podcast Schedule</div>
-                    <div class="task-timeline">
-                        <div class="task-bar completed" style="left: 0; width: 14.3%;">
-                            <span>Launched</span>
-                        </div>
-                        <div class="task-bar supporting" style="left: 14.3%; width: 42.9%;">
-                            <span>Bi-Monthly</span>
-                        </div>
-                        <div class="task-bar major" style="left: 57.1%; width: 42.9%;">
-                            <span>Weekly from Oct</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="task-row">
-                    <div class="task-name">Song Release</div>
-                    <div class="task-timeline">
-                        <div class="task-bar major" style="left: 57.1%; width: 14.3%;">
-                            <span>3 Songs Q3</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="task-row">
-                    <div class="task-name">Additional Songs</div>
-                    <div class="task-timeline">
-                        <div class="task-bar major" style="left: 71.4%; width: 28.6%;">
-                            <span>4 Songs Nov-Apr</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="task-row">
-                    <div class="task-name">Album Production</div>
-                    <div class="task-timeline">
-                        <div class="task-bar major" style="left: 85.7%; width: 14.3%;">
-                            <span>2026 Launch</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="task-row">
-                    <div class="task-name">Stage Script</div>
-                    <div class="task-timeline">
-                        <div class="task-bar major" style="left: 0; width: 57.1%;">
-                            <span>Final Draft Q3</span>
-                        </div>
-                        <div class="task-bar critical" style="left: 71.4%; width: 14.3%;">
-                            <span>Reading Q4</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="roadmap-legend">
-                <div class="roadmap-legend-item">
-                    <div class="roadmap-legend-color" style="background: linear-gradient(135deg, #00ff66, #00ffaa);"></div>
-                    <span class="roadmap-legend-label">Completed</span>
-                </div>
-                <div class="roadmap-legend-item">
-                    <div class="roadmap-legend-color" style="background: linear-gradient(135deg, #ff0066, #ff3366);"></div>
-                    <span class="roadmap-legend-label">Critical Path</span>
-                </div>
-                <div class="roadmap-legend-item">
-                    <div class="roadmap-legend-color" style="background: linear-gradient(135deg, #0066ff, #00aaff);"></div>
-                    <span class="roadmap-legend-label">Major Milestone</span>
-                </div>
-                <div class="roadmap-legend-item">
-                    <div class="roadmap-legend-color" style="background: linear-gradient(135deg, #ffaa00, #ffcc00);"></div>
-                    <span class="roadmap-legend-label">Supporting Activity</span>
-                </div>
-                <div class="roadmap-legend-item">
-                    <div class="roadmap-legend-color" style="background: repeating-linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0.1) 10px, rgba(255,255,255,0.2) 10px, rgba(255,255,255,0.2) 20px);"></div>
-                    <span class="roadmap-legend-label">Ongoing</span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="slide-number">7/9</div>
-</div>
-
-<!-- Slide 8: Investment Case - UPDATED -->
-<div class="slide investment-case-slide">
-    <div class="bridge-logo">
-        <img src="BRIDGE_LOGO_LightBG_AW_@1x[81] (1).png" alt="The Bridge Logo" class="logo-img">
-    </div>
-    <div class="gradient-orb" style="background: radial-gradient(circle, rgba(0,255,255,0.15) 0%, transparent 60%);"></div>
+    .bottom-metrics {
+        flex-direction: column;
+    }
     
-    <div class="slide-content">
-        <div class="slide-header">
-            <h1 class="slide-title" style="font-size: clamp(48px, 7vw, 84px);">The Investment Case</h1>
-        </div>
-        
-        <div class="content-grid">
-            <!-- Traction & Validation -->
-            <div class="proof-card">
-                <div class="card-header">
-                    <div class="card-icon">📈</div>
-                    <h2 class="card-title">Traction & Validation</h2>
-                </div>
-                <div class="proof-points">
-                    <div class="proof-item">
-                        <div class="proof-text"><strong>Live since May 6</strong> with initial podcast achieving 1M+ views in first week</div>
-                    </div>
-                    <div class="proof-item">
-                        <div class="proof-text">Bob Geldof and Aurora podcasts released in May 2025. <strong>20+ world-class artists</strong> lining up for the podcast series</div>
-                    </div>
-                    <div class="proof-item">
-                        <div class="proof-text"><strong>150,000 engaged followers</strong> growing 10% month-over-month with zero paid marketing</div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Strategic Assets -->
-            <div class="proof-card">
-                <div class="card-header">
-                    <div class="card-icon">🎯</div>
-                    <h2 class="card-title">Strategic Assets</h2>
-                </div>
-                <div class="proof-points">
-                    <div class="proof-item">
-                        <div class="proof-text"><strong>Platform & IP Ownership</strong> - Established artist relationships, Artist and content funnel, revenue sharing contracts and publishing rights</div>
-                    </div>
-                    <div class="proof-item">
-                        <div class="proof-text"><strong>Master rights to songs The Bridge invests into</strong>. This secures the majority of income from the sales of songs (digital and albums) and songs performed live</div>
-                    </div>
-                    <div class="proof-item">
-                        <div class="proof-text"><strong>Multiformat content engine</strong> - Integrated ecosystem producing podcasts, songs, albums, live events, and theatrical productions from single creative process</div>
-                    </div>
-                    <div class="proof-item">
-                        <div class="proof-text"><strong>A proven management team with a track record of building and scaling businesses</strong>. A talented and proven creative and production team</div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Team Credibility -->
-            <div class="proof-card">
-                <div class="card-header">
-                    <div class="card-icon">⭐</div>
-                    <h2 class="card-title">Team Credibility</h2>
-                </div>
-                <div class="proof-points">
-                    <div class="proof-item">
-                        <div class="proof-text"><strong>Alan Lane directing</strong> - Royal Edinburgh Military Tattoo Creative Director</div>
-                    </div>
-                    <div class="proof-item">
-                        <div class="proof-text"><strong>James Phillips</strong> - West End hit writer penning script (McQueen - 5 star reviews)</div>
-                    </div>
-                    <div class="proof-item">
-                        <div class="proof-text"><strong>Marla Altschuler</strong> - Award winning songwriter (#1 albums)</div>
-                    </div>
-                    <div class="proof-item">
-                        <div class="proof-text"><strong>Steve Anderson</strong> - Music Producer (Kylie, Westlife)</div>
-                    </div>
-                    <div class="proof-item">
-                        <div class="proof-text"><strong>Scott Millaney</strong> - Multi-Grammy winner Producer (Pink Floyd, Adele documentaries)</div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Financial Benefits UK - UPDATED -->
-            <div class="proof-card">
-                <div class="card-header">
-                    <div class="card-icon">💰</div>
-                    <h2 class="card-title">Financial Benefits UK</h2>
-                </div>
-                <div class="proof-points">
-                    <div class="proof-item">
-                        <div class="proof-text"><strong>SEIS Tax Relief</strong> - 50% of invested amount, 100% capital gains tax exemption, 50% capital gains reinvestment relief, loss relief if company fails</div>
-                    </div>
-                    <div class="proof-item">
-                        <div class="proof-text"><strong>EIS Tax Relief</strong> - 30% tax relief plus similar benefits to SEIS</div>
-                    </div>
-                    <div class="proof-item">
-                        <div class="proof-text"><strong>Theatre Tax Relief</strong> - Up to 50% production cost relief for the company</div>
-                    </div>
-                    <div class="proof-item">
-                        <div class="proof-text"><strong>5 revenue streams live</strong> - podcast sponsorship, music royalties, events, merchandise, musical</div>
-                    </div>
-                    <div class="proof-item">
-                        <div class="proof-text"><strong>Path to £9.2M revenue</strong> with 41% EBITDA margins by Year 3</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    .team-grid-main,
+    .partnerships-grid,
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
     
-    <div class="slide-number">8/9</div>
-</div>
-
-<!-- Slide 9: Investment Opportunity - UPDATED -->
-<div class="slide opportunity-slide">
-    <div class="bridge-logo">
-        <img src="BRIDGE_LOGO_LightBG_AW_@1x[81] (1).png" alt="The Bridge Logo" class="logo-img">
-    </div>
-    <div class="gradient-orb" style="background: radial-gradient(circle, rgba(255,0,102,0.15) 0%, rgba(0,255,255,0.1) 50%, transparent 70%); right: -300px; animation: float 20s ease-in-out infinite;"></div>
+    .charts-container {
+        grid-template-columns: 1fr;
+    }
     
-    <!-- Left Side -->
-    <div class="left-section">
-        <div class="main-title">
-            Current Funding Round
-            <span class="highlight-amount">£500K</span>
-        </div>
-        
-        <div class="investment-terms">
-            <div class="term-row">
-                <div class="term-icon">📊</div>
-                <div class="term-text">
-                    <div class="term-main">Ordinary Equity</div>
-                    <div class="term-sub">Direct ownership with full upside potential</div>
-                </div>
-            </div>
-            
-            <div class="term-row">
-                <div class="term-icon">💰</div>
-                <div class="term-text">
-                    <div class="term-main">Pre Money Valuation of £3m</div>
-                    <div class="term-sub">Aligned ordinary shares with up to 50% tax relief (SEIS) / 30% (EIS) for UK investors</div>
-                </div>
-            </div>
-            
-            <div class="term-row">
-                <div class="term-icon">🎯</div>
-                <div class="term-text">
-                    <div class="term-main">Mission aligned Investors</div>
-                    <div class="term-sub">Focussed on amplifying connection for communities</div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="progress-bar">
-            <div class="progress-fill"></div>
-        </div>
-        
-        <div style="margin-bottom: 40px;">
-            <div style="font-size: 28px; font-weight: 700; margin-bottom: 10px;">£50K Initial Commitments</div>
-            <div style="font-size: 16px; color: #999;">£450K remaining to close</div>
-        </div>
-        
-        <button class="cta-button">Let's explore if we're aligned</button>
-    </div>
+    .opportunity-slide {
+        flex-direction: column;
+        gap: 40px;
+    }
     
-    <!-- Right Side -->
-    <div class="right-section">
-        <div class="thesis-card hero">
-            <div class="thesis-metric">10% MoM Growth</div>
-            <div class="thesis-description">150K+ Followers • 5M+ Monthly Views</div>
-        </div>
-        
-        <div class="thesis-card">
-            <div class="thesis-metric">20+</div>
-            <div class="thesis-description">World-Class Artists Supporting</div>
-        </div>
-        
-        <div class="thesis-card">
-            <div class="thesis-metric">£9m+</div>
-            <div class="thesis-description">YR3 Revenue Projection</div>
-        </div>
-        
-        <div class="thesis-card">
-            <div class="thesis-metric">100%</div>
-            <div class="thesis-description">IP Ownership</div>
-        </div>
-        
-        <div class="thesis-card">
-            <div class="thesis-metric">>1</div>
-            <div class="thesis-description">Grammy Nominees in team</div>
-        </div>
-        
-        <div class="thesis-card">
-            <div class="thesis-metric">50%</div>
-            <div class="thesis-description">SEIS Tax Relief</div>
-        </div>
-        
-        <div class="thesis-card">
-            <div class="thesis-metric">41%</div>
-            <div class="thesis-description">Y3 EBITDA Margins</div>
-        </div>
-    </div>
+    .financial-content-wrapper {
+        flex-direction: column;
+    }
     
-    <div class="slide-number">9/9</div>
-</div>
-
-</body>
-</html>
+    .unit-economics-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .metrics-grid {
+        grid-template-columns: 1fr;
+    }
+}
