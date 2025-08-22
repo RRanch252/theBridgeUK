@@ -364,7 +364,7 @@ body {
 /* Team Grid - OPTIMIZED FOR 7 MEMBERS */
 .team-grid-main {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns: repeat(6, 1fr);  /* Change to 6 columns */
     gap: 12px;
 }
 
@@ -1671,7 +1671,7 @@ body {
 /* Responsive adjustments - OPTIMIZED FOR 7 MEMBERS */
 @media (max-width: 1600px) {
     .team-grid-main {
-        grid-template-columns: repeat(7, 1fr);
+        grid-template-columns: repeat(6, 1fr);
         gap: 10px;
     }
     
